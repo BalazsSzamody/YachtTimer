@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60027F881F17685D00D82418 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60027F871F17685D00D82418 /* StopWatch.swift */; };
 		601735591F17369300713DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601735581F17369300713DF1 /* AppDelegate.swift */; };
 		6017355B1F17369300713DF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017355A1F17369300713DF1 /* ViewController.swift */; };
 		6017355E1F17369300713DF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6017355C1F17369300713DF1 /* Main.storyboard */; };
 		601735611F17369300713DF1 /* YachtTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6017355F1F17369300713DF1 /* YachtTimer.xcdatamodeld */; };
 		601735631F17369300713DF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601735621F17369300713DF1 /* Assets.xcassets */; };
 		601735661F17369300713DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601735641F17369300713DF1 /* LaunchScreen.storyboard */; };
+		6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017356E1F17535300713DF1 /* StopwatchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60027F871F17685D00D82418 /* StopWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatch.swift; sourceTree = "<group>"; };
+		60027F891F184BA800D82418 /* testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing.playground; sourceTree = "<group>"; };
 		601735551F17369300713DF1 /* YachtTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YachtTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601735581F17369300713DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6017355A1F17369300713DF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		601735621F17369300713DF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		601735651F17369300713DF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		601735671F17369300713DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6017356D1F17370F00713DF1 /* YachtTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YachtTimer.entitlements; sourceTree = "<group>"; };
+		6017356E1F17535300713DF1 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +62,13 @@
 		601735571F17369300713DF1 /* YachtTimer */ = {
 			isa = PBXGroup;
 			children = (
+				6017356D1F17370F00713DF1 /* YachtTimer.entitlements */,
 				601735581F17369300713DF1 /* AppDelegate.swift */,
 				6017355A1F17369300713DF1 /* ViewController.swift */,
 				6017355C1F17369300713DF1 /* Main.storyboard */,
+				60027F871F17685D00D82418 /* StopWatch.swift */,
+				6017356E1F17535300713DF1 /* StopwatchViewController.swift */,
+				60027F891F184BA800D82418 /* testing.playground */,
 				601735621F17369300713DF1 /* Assets.xcassets */,
 				601735641F17369300713DF1 /* LaunchScreen.storyboard */,
 				601735671F17369300713DF1 /* Info.plist */,
@@ -101,6 +111,14 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VWUE9JZKY9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -140,7 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */,
 				601735611F17369300713DF1 /* YachtTimer.xcdatamodeld in Sources */,
+				60027F881F17685D00D82418 /* StopWatch.swift in Sources */,
 				6017355B1F17369300713DF1 /* ViewController.swift in Sources */,
 				601735591F17369300713DF1 /* AppDelegate.swift in Sources */,
 			);
@@ -306,6 +326,7 @@
 				6017356C1F17369300713DF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
