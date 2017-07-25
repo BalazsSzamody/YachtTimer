@@ -36,8 +36,7 @@ class ViewController: UIViewController {
                     setLabelColor(red)
             case 0:
                 if isTimerRunning {
-                    timer.invalidate()
-                    isTimerRunning = false
+                    stopTimer()
                     counterFinished()
                 }
                 resetLabels()
@@ -89,30 +88,24 @@ class ViewController: UIViewController {
     @IBAction func startButtonPressed(_ sender: UIButton) {
         switch isTimerRunning {
         case true:
-            timer.invalidate()
-            isTimerRunning = false
+            stopTimer()
             
         case false:
             
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in 
-                self.counter -= 1
-            }
-            isTimerRunning = true
+            startTimer()
             
         }
     }
     @IBAction func syncButtonPressed(_ sender: UIButton) {
         switch isTimerRunning{
         case true:
-            timer.invalidate()
+            stopTimer()
             if counter % 60 > 30 {
                 counter += 60 - ( counter % 60 )
             } else {
                 counter -= counter % 60
             }
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
-                self.counter -= 1
-            }
+            startTimer()
         case false:
             counter = counterReference
             resetLabels()
@@ -131,6 +124,17 @@ class ViewController: UIViewController {
         }
     }
     
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
+            self.counter -= 1
+        }
+        isTimerRunning = true
+    }
+    
+    func stopTimer() {
+        timer.invalidate()
+        isTimerRunning = false
+    }
     
     func updateDisplay(_ time: Int) {
         let minutes = time / 60

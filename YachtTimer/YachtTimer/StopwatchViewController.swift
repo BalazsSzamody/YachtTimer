@@ -17,48 +17,43 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
     
-    var isStopWatchRunning = false
+    var isStopWatchRunning = false {
+        didSet {
+            switch isStopWatchRunning {
+            case true:
+                // necessary for not getting optional crash after coming from timer view without opening Stopwatch screen first
+                guard let startButton = startButton else { return }
+                guard let lapButton = lapButton else { return }
+                
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
+                startButton.setTitle("Stop", for: .normal)
+                lapButton.setTitle("Lap", for: .normal)
+            case false:
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
+                startButton.setTitle("Start", for: .normal)
+                lapButton.setTitle("Reset", for: .normal)
+            }
+        }
+    }
     
     var stopWatch = Timer()
-    var decimalSeconds: Int = 0 {
-        willSet {
-            if newValue == 100 {
-                seconds += 1
-            }
-        }
-        didSet{
-            if decimalSeconds == 100 {
-                decimalSeconds = 0
-                
-            }
-            fractionSecondsLabel.text = displayTime(decimalSeconds)
-        }
-    }
-    var seconds: Int = 0 {
-        willSet{
-            if newValue == 60 {
-                minutes += 1
-            }
-        }
+    var counter: Int = 0 {
         didSet {
-            if seconds == 60 {
-                seconds = 0
-            }
-            secondsLabel.text = displayTime(seconds)
+            updateDisplay(counter)
         }
     }
-    var minutes: Int = 0 {
-        didSet {
-            minutesLabel.text = displayTime(minutes)
-        }
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        lapButton.setTitle("Reset", for: .normal)
+        // necessary to show correct buttons if coming from timer view
+        if isStopWatchRunning {
+            isStopWatchRunning = false
+            isStopWatchRunning = true
+        }
         
     }
 
@@ -71,14 +66,10 @@ class StopwatchViewController: UIViewController {
         switch isStopWatchRunning {
         case false:
             startStopWatch()
-            startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-            startButton.setTitle("Stop", for: .normal)
-            lapButton.setTitle("Lap", for: .normal)
+            
         case true:
             stopStopWatch()
-            startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
-            startButton.setTitle("Start", for: .normal)
-            lapButton.setTitle("Reset", for: .normal)
+            
         }
         
     }
@@ -86,9 +77,8 @@ class StopwatchViewController: UIViewController {
     @IBAction func lapButtonTapped(_ sender: UIButton) {
         switch isStopWatchRunning {
         case false:
-            decimalSeconds = 0
-            seconds = 0
-            minutes = 0
+            counter = 0
+            
             
         case true:
             break
@@ -97,7 +87,9 @@ class StopwatchViewController: UIViewController {
     }
     
     func startStopWatch() {
-        stopWatch = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: (#selector(StopwatchViewController.updateStopWatch)), userInfo: nil, repeats: true)
+        stopWatch = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) {_ in
+            self.counter += 1
+        }
         isStopWatchRunning = true
     }
     
@@ -106,12 +98,15 @@ class StopwatchViewController: UIViewController {
         isStopWatchRunning = false
     }
     
-    func updateStopWatch() {
-        decimalSeconds += 1
-    }
     
-    func displayTime(_ time: Int) -> String {
-        return String(format: "%02i", time)
+    func updateDisplay(_ time: Int) {
+        // let hours = time / 360000
+        let minutes = ( time % 360000 ) / 6000
+        minutesLabel.text = String(format: "%02i", minutes)
+        let seconds = ( time % 6000 ) / 100
+        secondsLabel.text = String(format: "%02i", seconds)
+        let fractionSeconds = time % 100
+        fractionSecondsLabel.text = String(format: "%02i", fractionSeconds)
     }
     /*
     // MARK: - Navigation

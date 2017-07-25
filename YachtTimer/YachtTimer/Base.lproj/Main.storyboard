@@ -72,7 +72,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G0-3A-NKQ">
                                                 <rect key="frame" x="100" y="0.0" width="50" height="50"/>
-                                                <state key="normal" title="Sync" backgroundImage="lapButton">
+                                                <state key="normal" title="Reset" backgroundImage="lapButton">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
