@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var counterReference: Int = 300
     var timer = Timer()
     
+    let alert = TextToSpeech()
+    
     var green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     var yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
     var red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
@@ -25,34 +27,18 @@ class ViewController: UIViewController {
     
     var counter: Int = 65 {
         didSet {
-            switch counter{
-            case 60 ... 119:
-                setLabelColor(yellow)
-                if oldValue < 60 {
-                    resetLabels()
-                }
-            case 1 ... 59:
-                    enlargeSeconds()
-                    setLabelColor(red)
-            case 0:
-                if isTimerRunning {
-                    stopTimer()
-                    counterFinished()
-                }
-                resetLabels()
-            
-            default:
-                if counter < 0 {
-                    counter = 0
-                } else {
-                    setLabelColor(green)
-                    if oldValue < 60 {
-                        resetLabels()
-                    }
-                }
+            if counter < 0 {
+                counter = 0
+                return
             }
-            print(counter)
+            if isTimerRunning {
+                manageSpeech(counter)
+            }
+            manageLabels(counter)
             updateDisplay(counter)
+            
+            
+            
         }
         
     }
@@ -90,11 +76,15 @@ class ViewController: UIViewController {
         case true:
             stopTimer()
             
+            
         case false:
             
             startTimer()
+            alert.sayOutLoud(counter)
             
         }
+        
+        
     }
     @IBAction func syncButtonPressed(_ sender: UIButton) {
         switch isTimerRunning{
@@ -114,15 +104,23 @@ class ViewController: UIViewController {
     @IBAction func swipeUp(_ sender: Any) {
         if !isTimerRunning {
             counter += 60
-            counterReference = counter
+            
         }
     }
     @IBAction func swipeDown(_ sender: Any) {
         if !isTimerRunning {
             counter -= 60
-            counterReference = counter
+            
         }
     }
+    
+    
+    
+    
+}
+
+extension ViewController {
+    //MARK: Timer functions
     
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
@@ -136,11 +134,48 @@ class ViewController: UIViewController {
         isTimerRunning = false
     }
     
+    func counterFinished() {
+        counter = counterReference
+        if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
+            stopWatchVC.startStopWatch()
+            self.tabBarController?.selectedViewController = stopWatchVC
+        }
+        
+    }
+}
+
+extension ViewController {
+    //MARK: Label handling functions
+    
     func updateDisplay(_ time: Int) {
         let minutes = time / 60
         minuteLabel.text = String(format: "%02i", minutes)
         let seconds = time % 60
         secondLabel.text = String(format: "%02i", seconds)
+    }
+    
+    func manageLabels(_ time: Int) {
+        switch time{
+        case 60 ... 119:
+            setLabelColor(yellow)
+            resetLabels()
+            
+        case 1 ... 59:
+            enlargeSeconds()
+            setLabelColor(red)
+            
+        case 0:
+            if isTimerRunning {
+                stopTimer()
+                counterFinished()
+            }
+            resetLabels()
+            
+        default:
+            setLabelColor(green)
+            resetLabels()
+            
+        }
     }
     
     func resetLabels() {
@@ -161,14 +196,7 @@ class ViewController: UIViewController {
         secondLabel.transform = CGAffineTransform(scaleX: 1.66, y: 1.66)
     }
     
-    func counterFinished() {
-        counter = counterReference
-        if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
-            stopWatchVC.startStopWatch()
-            self.tabBarController?.selectedViewController = stopWatchVC
-        }
-        
-    }
+    
     
     func setLabelColor(_ color: UIColor) {
         if currentLabelColor != color {
@@ -178,5 +206,27 @@ class ViewController: UIViewController {
             currentLabelColor = color
         }
     }
+    
 }
 
+extension ViewController {
+    //MARK: Speech handling
+    
+    func manageSpeech(_ time: Int) {
+        
+        if counter % 60 == 0 {
+            alert.sayOutLoud(counter)
+        } else if counter < 120 && counter % 30 == 0 {
+            alert.sayOutLoud(counter)
+        } else if counter < 60 && counter % 15 == 0 {
+            alert.sayOutLoud(counter)
+        } else if counter < 30 && counter % 5 == 0 {
+            alert.sayOutLoud(counter)
+        } else if counter < 15 {
+            alert.sayOutLoud(counter)
+        } else if counter == 0 {
+            alert.sayOutLoud("Start")
+        }
+        
+    }
+}

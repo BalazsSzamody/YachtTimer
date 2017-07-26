@@ -10,12 +10,19 @@ import UIKit
 
 class StopwatchViewController: UIViewController {
 
+    @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var minutesLabel: UILabel!
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var fractionSecondsLabel: UILabel!
+    @IBOutlet weak var hoursSeparator: UILabel!
+    @IBOutlet weak var minutesSeparator: UILabel!
+    @IBOutlet weak var secondsSeparator: UILabel!
+    @IBOutlet weak var displayStackView: UIStackView!
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
+    
+    var labels: [UILabel]!
     
     var isStopWatchRunning = false {
         didSet {
@@ -55,6 +62,9 @@ class StopwatchViewController: UIViewController {
             isStopWatchRunning = true
         }
         
+        labels = [hoursLabel, hoursSeparator, minutesLabel, minutesSeparator, secondsLabel, secondsSeparator, fractionSecondsLabel]
+        
+        updateDisplay(counter)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,13 +110,69 @@ class StopwatchViewController: UIViewController {
     
     
     func updateDisplay(_ time: Int) {
-        // let hours = time / 360000
+        
+        let hours = time / 360000
+        if hours == 0 {
+            if !hoursLabel.isHidden {
+                hoursLabel.isHidden = true
+                hoursSeparator.isHidden = true
+            }
+        } else {
+            if hoursLabel.isHidden {
+                hoursLabel.isHidden = false
+                hoursSeparator.isHidden = false
+            }
+            hoursLabel.text = String(hours)
+        }
+        
         let minutes = ( time % 360000 ) / 6000
-        minutesLabel.text = String(format: "%02i", minutes)
+        if hours == 0 && minutes == 0 {
+            if !minutesLabel.isHidden {
+                minutesLabel.isHidden = true
+                minutesSeparator.isHidden = true
+                
+            }
+        } else {
+            if minutesLabel.isHidden {
+                minutesLabel.isHidden = false
+                minutesSeparator.isHidden = false
+            }
+            minutesLabel.text = String(format: "%02i", minutes)
+        }
+        
+        let scale = determineScale()
+        setLabelSize(scale)
+        
+        
         let seconds = ( time % 6000 ) / 100
         secondsLabel.text = String(format: "%02i", seconds)
         let fractionSeconds = time % 100
         fractionSecondsLabel.text = String(format: "%02i", fractionSeconds)
+    }
+    
+    
+    func determineScale() -> CGFloat {
+        //determine scale based on how many labels are hidden
+        var scaleCounter = 0
+        for label in labels {
+            if label.isHidden {
+                scaleCounter += 1
+            }
+        }
+        switch scaleCounter {
+        case 1 ... 2:
+            return 1.33
+        case 3 ... 4:
+            return 1.66
+        default:
+            return 1
+        }
+    }
+    
+    func setLabelSize(_ scale: CGFloat) {
+        //set the size of the visible Labels
+        displayStackView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        
     }
     /*
     // MARK: - Navigation
