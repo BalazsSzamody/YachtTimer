@@ -23,11 +23,7 @@ struct LapTime: CustomStringConvertible {
         return "totalTime: \(totalTime), previousLap: \(previousLap), lapTime: \(lapTime), lapNumber: \(lapNumber)"
     }
     
-    static var laps: [LapTime] = [] {
-        didSet {
-            print(laps)
-        }
-    }
+    static var laps: [LapTime] = []
     
     static func addLap(_ time: Int) {
         guard !laps.isEmpty else {

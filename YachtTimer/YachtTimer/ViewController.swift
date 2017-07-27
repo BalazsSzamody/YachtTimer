@@ -20,9 +20,9 @@ class ViewController: UIViewController {
     
     let alert = TextToSpeech()
     
-    var green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
-    var yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
-    var red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
+    let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
+    let yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
+    let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
     var currentLabelColor: UIColor!
     
     var counter: Int = 65 {
