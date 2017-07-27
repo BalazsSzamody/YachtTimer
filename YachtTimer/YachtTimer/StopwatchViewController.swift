@@ -22,6 +22,9 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
     
+    @IBOutlet weak var lapsTableView: UITableView!
+    
+    
     var labels: [UILabel]!
     
     var isStopWatchRunning = false {
@@ -42,6 +45,8 @@ class StopwatchViewController: UIViewController {
             }
         }
     }
+    
+    var isFirstLap = true
     
     var stopWatch = Timer()
     var counter: Int = 0 {
@@ -65,12 +70,14 @@ class StopwatchViewController: UIViewController {
         labels = [hoursLabel, hoursSeparator, minutesLabel, minutesSeparator, secondsLabel, secondsSeparator, fractionSecondsLabel]
         
         updateDisplay(counter)
+        
+        
+        lapsTableView.delegate = self
+        lapsTableView.dataSource = self
+        
+        lapsTableView.separatorStyle = .none
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
         switch isStopWatchRunning {
@@ -88,19 +95,29 @@ class StopwatchViewController: UIViewController {
         switch isStopWatchRunning {
         case false:
             counter = 0
-            
+            LapTime.laps = []
+            lapsTableView.reloadData()
             
         case true:
-            break
+            LapTime.addLap(counter)
+            lapsTableView.reloadData()
         }
         
     }
     
     func startStopWatch() {
-        stopWatch = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) {_ in
-            self.counter += 1
-        }
-        isStopWatchRunning = true
+        
+            stopWatch = Timer(timeInterval: 0.01, repeats: true) {_ in
+                
+                self.counter += 1
+            }
+        
+            RunLoop.current.add(stopWatch, forMode: .commonModes)
+            isStopWatchRunning = true
+        
+        
+        
+        
     }
     
     func stopStopWatch() {
@@ -174,14 +191,31 @@ class StopwatchViewController: UIViewController {
         displayStackView.transform = CGAffineTransform(scaleX: scale, y: scale)
         
     }
-    /*
-    // MARK: - Navigation
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return LapTime.laps.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stopWatchCell", for: indexPath) as! StopWatchTableViewCell
+        let source = LapTime.laps[indexPath.row]
+        
+        cell.lapNumber = source.lapNumber
+        cell.totalTime = source.totalTime
+        cell.lapTime = source.lapTime
+        
+        
+        
+        cell.backgroundColor = UIColor(white: 1, alpha: 0)
+        
+        return cell
+    }
 }

@@ -123,9 +123,11 @@ extension ViewController {
     //MARK: Timer functions
     
     func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {_ in
+        timer = Timer(timeInterval: 1, repeats: true) {_ in
             self.counter -= 1
         }
+        
+        RunLoop.current.add(timer, forMode: .commonModes)
         isTimerRunning = true
     }
     
