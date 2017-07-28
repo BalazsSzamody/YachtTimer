@@ -27,7 +27,7 @@ class TextToSpeech {
             text = "\(number % 60)"
         } else {
             if number % 60 == 0 {
-               text = "\(number / 60) minutes"
+                text = "\(number / 60) \(number / 60 == 1 ? "minute" : "minutes")"
             } else {
                 text = "\(number / 60) minutes \(number % 60)"
             }

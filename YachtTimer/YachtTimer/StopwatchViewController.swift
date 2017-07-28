@@ -41,27 +41,6 @@ class StopwatchViewController: UIViewController {
     
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     
-    
-    
-    var isStopWatchRunning = false {
-        didSet {
-            switch isStopWatchRunning {
-            case true:
-                // necessary for not getting optional crash after coming from timer view without opening Stopwatch screen first
-                guard let startButton = startButton else { return }
-                guard let lapButton = lapButton else { return }
-                
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-                startButton.setTitle("Stop", for: .normal)
-                lapButton.setTitle("Lap", for: .normal)
-            case false:
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
-                startButton.setTitle("Start", for: .normal)
-                lapButton.setTitle("Reset", for: .normal)
-            }
-        }
-    }
-    
     var isFirstLap = true {
         didSet {
             if isFirstLap {
@@ -72,7 +51,24 @@ class StopwatchViewController: UIViewController {
         }
     }
     
-    var stopWatch = Timer()
+    var stopWatch: Timer? = nil {
+        didSet {
+            if stopWatch == nil {
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
+                startButton.setTitle("Start", for: .normal)
+                lapButton.setTitle("Reset", for: .normal)
+                
+            } else {
+                // necessary for not getting optional crash after coming from timer view without opening Stopwatch screen first
+                guard let startButton = startButton else { return }
+                guard let lapButton = lapButton else { return }
+                
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
+                startButton.setTitle("Stop", for: .normal)
+                lapButton.setTitle("Lap", for: .normal)
+            }
+        }
+    }
     var counter: Int = 0 {
         didSet {
             if !isFirstLap {
@@ -95,9 +91,10 @@ class StopwatchViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // necessary to show correct buttons if coming from timer view
-        if isStopWatchRunning {
-            isStopWatchRunning = false
-            isStopWatchRunning = true
+        if stopWatch != nil {
+            startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
+            startButton.setTitle("Stop", for: .normal)
+            lapButton.setTitle("Lap", for: .normal)
         }
         
         labels = [displayStackView : [hoursLabel,
@@ -130,32 +127,28 @@ class StopwatchViewController: UIViewController {
 
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
-        switch isStopWatchRunning {
-        case false:
+        if let stopWatch = stopWatch {
+            stopStopWatch(stopWatch)
+        } else {
             startStopWatch()
-            
-        case true:
-            stopStopWatch()
-            
         }
+        
         
     }
 
     @IBAction func lapButtonTapped(_ sender: UIButton) {
-        switch isStopWatchRunning {
-        case false:
+        
+        if stopWatch != nil {
+            isFirstLap = false
+            lapCounter = 0
+            LapTime.addLap(counter)
+            lapsTableView.reloadData()
+        } else {
             counter = 0
             lapCounter = 0
             LapTime.laps = []
             isFirstLap = true
             lapsTableView.reloadData()
-            
-        case true:
-            isFirstLap = false
-            lapCounter = 0
-            LapTime.addLap(counter)
-            lapsTableView.reloadData()
-            
         }
         
     }
@@ -166,18 +159,18 @@ class StopwatchViewController: UIViewController {
                 self.lapCounter += 1
                 self.counter += 1
             }
-        
+        guard let stopWatch = stopWatch else { return }
             RunLoop.current.add(stopWatch, forMode: .commonModes)
-            isStopWatchRunning = true
+        
         
         
         
         
     }
     
-    func stopStopWatch() {
+    func stopStopWatch(_ stopWatch: Timer) {
         stopWatch.invalidate()
-        isStopWatchRunning = false
+        self.stopWatch = nil
     }
     
     

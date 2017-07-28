@@ -16,7 +16,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var syncButton: UIButton!
     
     var counterReference: Int = 300
-    var timer = Timer()
+    var timer: Timer? = nil {
+        didSet {
+            if timer == nil {
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
+                startButton.setTitle("Start", for: .normal)
+                syncButton.setTitle("Reset", for: .normal)
+            } else {
+                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
+                startButton.setTitle("Stop", for: .normal)
+                syncButton.setTitle("Sync", for: .normal)
+            }
+        }
+    }
     
     let alert = TextToSpeech()
     
@@ -31,31 +43,14 @@ class ViewController: UIViewController {
                 counter = 0
                 return
             }
-            if isTimerRunning {
+            if timer != nil {
                 manageSpeech(counter)
             }
             manageLabels(counter)
             updateDisplay(counter)
-            
-            
-            
         }
-        
     }
     
-    var isTimerRunning = false {
-        didSet{
-            if !isTimerRunning {
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
-                startButton.setTitle("Start", for: .normal)
-                syncButton.setTitle("Reset", for: .normal)
-            } else {
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-                startButton.setTitle("Stop", for: .normal)
-                syncButton.setTitle("Sync", for: .normal)
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,43 +67,38 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
-        switch isTimerRunning {
-        case true:
-            stopTimer()
-            
-            
-        case false:
-            
+        if let timer = timer {
+            stopTimer(timer)
+        } else {
             startTimer()
             alert.sayOutLoud(counter)
-            
         }
+        
         
         
     }
     @IBAction func syncButtonPressed(_ sender: UIButton) {
-        switch isTimerRunning{
-        case true:
-            stopTimer()
+        if let timer = timer {
+            stopTimer(timer)
             if counter % 60 > 30 {
                 counter += 60 - ( counter % 60 )
             } else {
                 counter -= counter % 60
             }
             startTimer()
-        case false:
+        } else {
             counter = counterReference
             resetLabels()
         }
     }
     @IBAction func swipeUp(_ sender: Any) {
-        if !isTimerRunning {
+        if timer == nil {
             counter += 60
             
         }
     }
     @IBAction func swipeDown(_ sender: Any) {
-        if !isTimerRunning {
+        if timer == nil {
             counter -= 60
             
         }
@@ -127,13 +117,14 @@ extension ViewController {
             self.counter -= 1
         }
         
+        guard let timer = timer else { return }
         RunLoop.current.add(timer, forMode: .commonModes)
-        isTimerRunning = true
     }
     
-    func stopTimer() {
+    func stopTimer(_ timer: Timer) {
+        
         timer.invalidate()
-        isTimerRunning = false
+        self.timer = nil
     }
     
     func counterFinished() {
@@ -167,8 +158,8 @@ extension ViewController {
             setLabelColor(red)
             
         case 0:
-            if isTimerRunning {
-                stopTimer()
+            if let timer = timer {
+                stopTimer(timer)
                 counterFinished()
             }
             resetLabels()
