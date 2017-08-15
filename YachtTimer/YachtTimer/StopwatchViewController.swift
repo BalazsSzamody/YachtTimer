@@ -28,7 +28,6 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var smallFractionSeconds: UILabel!
     @IBOutlet weak var smallDisplayStackView: UIStackView!
     
-    
     var labels: [UIStackView:[UILabel]]!
     
     

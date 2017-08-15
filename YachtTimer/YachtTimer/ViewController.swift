@@ -15,6 +15,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var syncButton: UIButton!
     
+    @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var closeOverlayLeftButton: UIButton!
+    
+    
     var counterReference: Int = 300
     var timer: Timer? = nil {
         didSet {
@@ -56,10 +62,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        counter = 300
+        counter = counterReference
         updateDisplay(counter)
         setLabelColor(green)
+        prepareOverlaysAndButtons()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -104,7 +112,19 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        overlayView.isHidden = false
+        helpButton.isHidden = true
+    }
     
+    @IBAction func closeOverlayLeftButtonPressed(_ sender: Any) {
+        overlayView.isHidden = true
+        helpButton.isHidden = false
+    }
+    
+    @IBAction func settingsButtonPressed(_ sender: Any) {
+        
+    }
     
     
 }
@@ -221,5 +241,20 @@ extension ViewController {
             alert.sayOutLoud("Start")
         }
         
+    }
+}
+
+extension ViewController {
+    //MARK: Overlay handling
+    
+    func prepareOverlaysAndButtons() {
+        overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
+        overlayView.isHidden = true
+        let helpImage = #imageLiteral(resourceName: "QuestionMark").withRenderingMode(.alwaysTemplate)
+        helpButton.setImage(helpImage, for: .normal)
+        let settingsImage = #imageLiteral(resourceName: "Cogwheel").withRenderingMode(.alwaysTemplate)
+        settingsButton.setImage(settingsImage, for: .normal)
+        let closeOverlayImage = #imageLiteral(resourceName: "XMark").withRenderingMode(.alwaysTemplate)
+        closeOverlayLeftButton.setImage(closeOverlayImage, for: .normal)
     }
 }

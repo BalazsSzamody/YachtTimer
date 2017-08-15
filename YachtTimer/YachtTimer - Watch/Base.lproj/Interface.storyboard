@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--Timer-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="TimerInterface" title="Timer" id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="YachtTimer___Watch_Extension">
+                    <items>
+                        <group width="1" height="165" alignment="left" layout="vertical" spacing="0.0" id="2of-h6-qS8">
+                            <items>
+                                <group width="1" height="118" alignment="center" layout="vertical" id="JvY-Rj-zET">
+                                    <items>
+                                        <group width="1" height="15" alignment="left" verticalAlignment="center" id="lBM-if-5Pe">
+                                            <items>
+                                                <button alignment="left" id="gSi-8J-nud">
+                                                    <group key="contentGroup" width="1" height="1" alignment="left" id="gpc-Fc-nOF">
+                                                        <items>
+                                                            <imageView height="12" alignment="center" verticalAlignment="center" image="upArrows" id="K7Q-Hp-Bqy">
+                                                                <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </imageView>
+                                                        </items>
+                                                    </group>
+                                                    <connections>
+                                                        <action selector="upArrowPressed" destination="AgC-eL-Hgc" id="RCU-sN-r49"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" id="u8E-QV-bpZ">
+                                            <items>
+                                                <label width="71" height="55" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="m1H-WA-51N">
+                                                    <fontDescription key="font" type="system" pointSize="63"/>
+                                                    <variation key="device=watch38mm" height="45" width="62">
+                                                        <fontDescription key="font" type="system" pointSize="55"/>
+                                                    </variation>
+                                                </label>
+                                                <label height="55" alignment="center" verticalAlignment="center" text=":" textAlignment="center" baselineAdjustment="alignCenters" id="nZH-QB-EFj">
+                                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                                    <variation key="device=watch38mm" height="45"/>
+                                                </label>
+                                                <label width="71" height="55" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="zYX-If-yw2">
+                                                    <fontDescription key="font" type="system" pointSize="63"/>
+                                                    <variation key="device=watch38mm" height="45" width="62">
+                                                        <fontDescription key="font" type="system" pointSize="55"/>
+                                                    </variation>
+                                                </label>
+                                            </items>
+                                        </group>
+                                        <group width="1" height="15" alignment="left" verticalAlignment="center" id="aDC-Lx-1Ps">
+                                            <items>
+                                                <button alignment="left" id="vOH-3k-8bt">
+                                                    <group key="contentGroup" width="1" height="1" alignment="left" id="EDu-qq-NjL">
+                                                        <items>
+                                                            <imageView height="12" alignment="center" verticalAlignment="center" image="downArrows" id="yvX-jh-Cvd">
+                                                                <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </imageView>
+                                                        </items>
+                                                    </group>
+                                                    <connections>
+                                                        <action selector="downArrowPressed" destination="AgC-eL-Hgc" id="i0D-9Z-z6E"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                    <gestureRecognizers>
+                                        <swipeGestureRecognizer direction="4" id="G8O-rV-xME">
+                                            <connections>
+                                                <action selector="swipe:" destination="AgC-eL-Hgc" id="San-yf-cdw"/>
+                                            </connections>
+                                        </swipeGestureRecognizer>
+                                        <swipeGestureRecognizer direction="8" id="MBS-8n-deg">
+                                            <connections>
+                                                <action selector="swipe:" destination="AgC-eL-Hgc" id="iqm-qZ-bxo"/>
+                                            </connections>
+                                        </swipeGestureRecognizer>
+                                    </gestureRecognizers>
+                                    <variation key="device=watch38mm" height="95"/>
+                                </group>
+                                <group width="1" alignment="center" verticalAlignment="bottom" spacing="30" id="8Sj-zn-KmB">
+                                    <items>
+                                        <button alignment="center" verticalAlignment="center" id="bDC-Cl-AaN">
+                                            <group key="contentGroup" width="40" height="40" alignment="left" id="Zgm-mp-QhL">
+                                                <items>
+                                                    <imageView width="40" height="40" alignment="left" image="button" id="ujI-QE-J1W">
+                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </imageView>
+                                                </items>
+                                                <variation key="device=watch38mm" height="40"/>
+                                            </group>
+                                            <connections>
+                                                <action selector="startStopPressed" destination="AgC-eL-Hgc" id="s4A-lL-KUQ"/>
+                                            </connections>
+                                        </button>
+                                        <button alignment="center" verticalAlignment="center" id="dfI-06-90w">
+                                            <group key="contentGroup" width="40" height="40" alignment="left" id="vZP-Dx-8dO">
+                                                <items>
+                                                    <imageView width="40" height="40" alignment="left" image="button" id="flQ-D0-iiF">
+                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </imageView>
+                                                </items>
+                                                <variation key="device=watch38mm" height="40"/>
+                                            </group>
+                                            <connections>
+                                                <action selector="syncResetPressed" destination="AgC-eL-Hgc" id="suu-VA-SOY"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                    <variation key="device=watch38mm" spacing="21"/>
+                                </group>
+                            </items>
+                            <variation key="device=watch38mm" height="140"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="downArrowImage" destination="yvX-jh-Cvd" id="lOE-jM-A1Y"/>
+                        <outlet property="minutesLabel" destination="m1H-WA-51N" id="9Yo-sl-hso"/>
+                        <outlet property="secondsLabel" destination="zYX-If-yw2" id="Ejc-6h-hDd"/>
+                        <outlet property="separatorLabel" destination="nZH-QB-EFj" id="JMx-AB-RgA"/>
+                        <outlet property="startStopButtonImage" destination="ujI-QE-J1W" id="qvN-ah-RWW"/>
+                        <outlet property="swipeDownGestureRecognizer" destination="MBS-8n-deg" id="wNh-4y-RHD"/>
+                        <outlet property="swipeUpGestureRecognizer" destination="G8O-rV-xME" id="CsR-XF-VYC"/>
+                        <outlet property="syncResetButtonImage" destination="flQ-D0-iiF" id="efQ-ol-vWK"/>
+                        <outlet property="timerGroup" destination="u8E-QV-bpZ" id="gzA-e2-Bpw"/>
+                        <outlet property="upArrowImage" destination="K7Q-Hp-Bqy" id="rR4-NX-Ona"/>
+                        <segue destination="uAh-50-xVP" kind="relationship" relationship="nextPage" id="6DG-1C-80U"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="56.666666666666671" y="95.461538461538467"/>
+        </scene>
+        <!--StopwatchInterface-->
+        <scene sceneID="mpd-tR-5e7">
+            <objects>
+                <controller identifier="StopwatchInterface" id="uAh-50-xVP" customClass="StopwatchInterfaceController" customModule="YachtTimer___Watch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" spacing="2" id="NbD-eQ-ery">
+                            <items>
+                                <group width="1" height="40" alignment="left" id="ZaD-um-s5B">
+                                    <items>
+                                        <group width="1" alignment="center" verticalAlignment="center" id="dXH-np-cj6">
+                                            <items>
+                                                <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="afV-WG-N62">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm" width="20">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text=":" id="66Q-aN-DZw">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="NDK-gF-2cf">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm" width="20">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text=":" id="UTY-ty-XxR">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="K6H-Mj-8f1">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm" width="20">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text="." id="hF8-Tq-Lbv">
+                                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="uag-RV-6is">
+                                                    <fontDescription key="font" type="system" pointSize="16"/>
+                                                    <variation key="device=watch38mm" height="19" width="17">
+                                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                                    </variation>
+                                                </label>
+                                            </items>
+                                        </group>
+                                    </items>
+                                    <variation key="device=watch38mm" height="35"/>
+                                </group>
+                                <group width="1" height="60" alignment="left" id="Eb3-4E-8gR">
+                                    <items>
+                                        <group width="1" alignment="center" verticalAlignment="center" id="XZU-r9-hPN">
+                                            <items>
+                                                <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="Jx3-MM-P1X">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm" width="27">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label height="1" alignment="center" verticalAlignment="center" text=":" id="S14-cx-fNd">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="DVt-7Q-s7f">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm" width="27">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label height="1" alignment="center" verticalAlignment="center" text=":" id="sfK-oa-1bd">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="v39-Be-VS3">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm" width="27">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label alignment="center" verticalAlignment="center" text="." id="gJb-IZ-bTI">
+                                                    <fontDescription key="font" type="system" pointSize="27"/>
+                                                    <variation key="device=watch38mm">
+                                                        <fontDescription key="font" type="system" pointSize="23"/>
+                                                    </variation>
+                                                </label>
+                                                <label width="27" height="31" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="9c1-tu-c2Y">
+                                                    <fontDescription key="font" type="system" pointSize="23"/>
+                                                    <variation key="device=watch38mm" height="23" width="22">
+                                                        <fontDescription key="font" type="system" pointSize="18"/>
+                                                    </variation>
+                                                </label>
+                                            </items>
+                                        </group>
+                                    </items>
+                                    <variation key="device=watch38mm" height="50"/>
+                                </group>
+                                <group width="1" alignment="center" verticalAlignment="center" spacing="30" id="pK9-FY-rgZ">
+                                    <items>
+                                        <button alignment="center" verticalAlignment="center" id="nic-AX-Gx5">
+                                            <group key="contentGroup" width="40" height="40" alignment="left" id="hiy-u5-6wI">
+                                                <items>
+                                                    <imageView width="40" height="40" alignment="left" image="button" id="WKi-pn-ru0">
+                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </imageView>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <action selector="startStopButtonPressed" destination="uAh-50-xVP" id="F0u-cH-7vS"/>
+                                            </connections>
+                                        </button>
+                                        <button alignment="center" verticalAlignment="center" id="GQV-w4-cfd">
+                                            <group key="contentGroup" width="40" height="40" alignment="left" id="sxl-lV-5Rb">
+                                                <items>
+                                                    <imageView width="40" height="40" alignment="left" image="button" id="8Ul-hu-HbX">
+                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </imageView>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <action selector="lapResetButtonPressed" destination="uAh-50-xVP" id="0I4-eH-1RJ"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                    <variation key="device=watch38mm" spacing="23"/>
+                                </group>
+                                <group width="1" height="15" alignment="left" verticalAlignment="center" id="xgf-Rr-lOC"/>
+                                <table alignment="left" verticalAlignment="bottom" id="8sb-U3-GSE">
+                                    <items>
+                                        <tableRow identifier="lapTableRow" id="6aA-Na-URA" customClass="LapTableRow" customModule="YachtTimer___Watch_Extension">
+                                            <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="5C5-Ix-dmI">
+                                                <items>
+                                                    <group width="1" alignment="left" layout="vertical" spacing="0.0" id="xZH-pS-6zw">
+                                                        <items>
+                                                            <label alignment="left" text="Lap" id="RHy-k7-ftB"/>
+                                                            <group width="1" alignment="right" id="PgU-yl-xtP">
+                                                                <items>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="pLz-Hm-Py4">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text=":" id="i79-bR-Wed">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="24a-kt-gYo">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text=":" id="DKz-vp-Dmr">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="126-Bh-aAi">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text="." id="uxB-ii-nVa">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="gOt-nM-Vq9">
+                                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        <variation key="device=watch38mm" height="19" width="17">
+                                                                            <fontDescription key="font" type="system" pointSize="13"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                </items>
+                                                                <edgeInsets key="margins" left="16" right="0.0" top="0.0" bottom="0.0"/>
+                                                            </group>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" widthAdjustment="-60" height="2" alignment="center" id="0ot-Fq-Nwf">
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </group>
+                                                    <group width="1" alignment="left" layout="vertical" spacing="0.0" id="Zs1-OT-Poi">
+                                                        <items>
+                                                            <label alignment="left" text="Total:" id="eIy-kf-2pG"/>
+                                                            <group width="1" alignment="right" id="IVW-F4-Ops">
+                                                                <items>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="xfE-Z5-7RX">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text=":" id="Gu6-IW-n7Q">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="GkE-he-E3K">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text=":" id="N0J-su-Iwq">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="O9x-fJ-skJ">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm" width="20">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label alignment="center" verticalAlignment="center" text="." id="gUA-le-hUg">
+                                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                                        <variation key="device=watch38mm">
+                                                                            <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="gUh-UB-ZEb">
+                                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                                        <variation key="device=watch38mm" height="19" width="17">
+                                                                            <fontDescription key="font" type="system" pointSize="13"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                </items>
+                                                                <edgeInsets key="margins" left="16" right="0.0" top="0.0" bottom="0.0"/>
+                                                            </group>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="lapDisplayGroup" destination="PgU-yl-xtP" id="mV7-cN-7HU"/>
+                                                <outlet property="lapFractionSecondsLabel" destination="gOt-nM-Vq9" id="NQG-Tr-HoW"/>
+                                                <outlet property="lapHoursLabel" destination="pLz-Hm-Py4" id="RXT-i1-2FV"/>
+                                                <outlet property="lapHoursSeparator" destination="i79-bR-Wed" id="uxo-F5-3Lh"/>
+                                                <outlet property="lapMinutesLabel" destination="24a-kt-gYo" id="DOd-x4-zNV"/>
+                                                <outlet property="lapMinutesSeparator" destination="DKz-vp-Dmr" id="qka-ul-Cyo"/>
+                                                <outlet property="lapNumberLabel" destination="RHy-k7-ftB" id="cce-6H-APG"/>
+                                                <outlet property="lapSecondsLabel" destination="126-Bh-aAi" id="zYi-a9-wDi"/>
+                                                <outlet property="lapSecondsSeparator" destination="uxB-ii-nVa" id="JdZ-0o-MH9"/>
+                                                <outlet property="totalDisplayGroup" destination="IVW-F4-Ops" id="0zW-C2-6HS"/>
+                                                <outlet property="totalFractionSecondsLabel" destination="gUh-UB-ZEb" id="tuw-hC-Qu0"/>
+                                                <outlet property="totalHoursLabel" destination="xfE-Z5-7RX" id="g3d-2D-kCQ"/>
+                                                <outlet property="totalHoursSeparator" destination="Gu6-IW-n7Q" id="LRc-Jr-w3W"/>
+                                                <outlet property="totalMinutesLabel" destination="GkE-he-E3K" id="779-v8-WFe"/>
+                                                <outlet property="totalMinutesSeparator" destination="N0J-su-Iwq" id="sUI-yY-8RK"/>
+                                                <outlet property="totalSecondsLabel" destination="O9x-fJ-skJ" id="4GH-9B-fwX"/>
+                                                <outlet property="totalSecondsSeparator" destination="gUA-le-hUg" id="y3R-Iq-adK"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="displayGroup" destination="XZU-r9-hPN" id="MY2-OS-9r2"/>
+                        <outlet property="fractionSecondsLabel" destination="9c1-tu-c2Y" id="7Y1-DL-9iM"/>
+                        <outlet property="hoursLabel" destination="Jx3-MM-P1X" id="hSk-oP-Y0M"/>
+                        <outlet property="hoursSeparator" destination="S14-cx-fNd" id="Lbu-a4-gJI"/>
+                        <outlet property="lapResetButtonImage" destination="8Ul-hu-HbX" id="VQ7-5A-svC"/>
+                        <outlet property="lapTable" destination="8sb-U3-GSE" id="arQ-KX-7Y5"/>
+                        <outlet property="minutesLabel" destination="DVt-7Q-s7f" id="cjn-90-0ad"/>
+                        <outlet property="minutesSeparator" destination="sfK-oa-1bd" id="mLk-z4-HNU"/>
+                        <outlet property="secondsLabel" destination="v39-Be-VS3" id="qGj-hg-cKR"/>
+                        <outlet property="secondsSeparator" destination="gJb-IZ-bTI" id="2wm-Op-0JL"/>
+                        <outlet property="smallDisplayGroup" destination="dXH-np-cj6" id="2To-xj-93J"/>
+                        <outlet property="smallFractionSecondsLabel" destination="uag-RV-6is" id="Czb-hM-wN7"/>
+                        <outlet property="smallHoursLabel" destination="afV-WG-N62" id="xhx-va-Cbx"/>
+                        <outlet property="smallHoursSeparator" destination="66Q-aN-DZw" id="vAn-Ht-iEc"/>
+                        <outlet property="smallMinutesLabel" destination="NDK-gF-2cf" id="3Qc-5b-ao0"/>
+                        <outlet property="smallMinutesSeparator" destination="UTY-ty-XxR" id="i3C-2K-cYJ"/>
+                        <outlet property="smallSecondsLabel" destination="K6H-Mj-8f1" id="P2d-45-udm"/>
+                        <outlet property="smallSecondsSeparator" destination="hF8-Tq-Lbv" id="iTb-cN-hE7"/>
+                        <outlet property="startStopButtonImage" destination="WKi-pn-ru0" id="Wqa-h2-RxY"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="329" y="96"/>
+        </scene>
+    </scenes>
+</document>

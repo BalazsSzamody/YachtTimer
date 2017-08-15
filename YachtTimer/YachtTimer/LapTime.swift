@@ -30,7 +30,7 @@ struct LapTime: CustomStringConvertible {
             laps.insert(LapTime(totalTime: time, previousLap: 0, lapNumber: laps.count + 1), at: 0)
             return
         }
-        let lastTotal = laps[laps.count - 1].totalTime
+        let lastTotal = laps[0].totalTime
         laps.insert(LapTime(totalTime: time, previousLap: lastTotal, lapNumber: laps.count + 1), at: 0)
         
     }

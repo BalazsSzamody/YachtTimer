@@ -15,13 +15,71 @@
 		601735631F17369300713DF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601735621F17369300713DF1 /* Assets.xcassets */; };
 		601735661F17369300713DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601735641F17369300713DF1 /* LaunchScreen.storyboard */; };
 		6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017356E1F17535300713DF1 /* StopwatchViewController.swift */; };
+		6025018A1F32DF6D009F664A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602501881F32DF6D009F664A /* Interface.storyboard */; };
+		6025018C1F32DF6D009F664A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6025018B1F32DF6D009F664A /* Assets.xcassets */; };
+		602501931F32DF6D009F664A /* YachtTimer - Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 602501921F32DF6D009F664A /* YachtTimer - Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		602501981F32DF6D009F664A /* TimerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602501971F32DF6D009F664A /* TimerInterfaceController.swift */; };
+		6025019A1F32DF6D009F664A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602501991F32DF6D009F664A /* ExtensionDelegate.swift */; };
+		6025019C1F32DF6D009F664A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6025019B1F32DF6D009F664A /* Assets.xcassets */; };
+		602501A01F32DF6E009F664A /* YachtTimer - Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 602501861F32DF6D009F664A /* YachtTimer - Watch.app */; };
+		602501AA1F32DFB3009F664A /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F71F282A6100E4E846 /* TextToSpeech.swift */; };
+		602501AB1F32DFB7009F664A /* LapTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60027F871F17685D00D82418 /* LapTime.swift */; };
+		602501AD1F32DFC7009F664A /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602501AC1F32DFC7009F664A /* WatchConnectivity.framework */; };
+		602501AF1F32FC17009F664A /* StopwatchInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602501AE1F32FC17009F664A /* StopwatchInterfaceController.swift */; };
+		602501B11F340256009F664A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602501B01F340256009F664A /* Context.swift */; };
 		603217F61F282A3800E4E846 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603217F51F282A3800E4E846 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		603217F81F282A6100E4E846 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F71F282A6100E4E846 /* TextToSpeech.swift */; };
 		603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */; };
+		609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A721F42F514004B0139 /* LapTableRow.swift */; };
+		609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
+		609E7A771F4303C6004B0139 /* StopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */; };
+		609E7A791F430B2F004B0139 /* LabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* LabelCollection.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		602501941F32DF6D009F664A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6017354D1F17369300713DF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 602501911F32DF6D009F664A;
+			remoteInfo = "YachtTimer - Watch Extension";
+		};
+		6025019E1F32DF6E009F664A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6017354D1F17369300713DF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 602501851F32DF6D009F664A;
+			remoteInfo = "YachtTimer - Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		602501A61F32DF6E009F664A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				602501931F32DF6D009F664A /* YachtTimer - Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602501A81F32DF6E009F664A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				602501A01F32DF6E009F664A /* YachtTimer - Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		60027F871F17685D00D82418 /* LapTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTime.swift; sourceTree = "<group>"; };
+		60027F871F17685D00D82418 /* LapTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LapTime.swift; path = YachtTimer/LapTime.swift; sourceTree = "<group>"; };
 		60027F891F184BA800D82418 /* testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing.playground; sourceTree = "<group>"; };
 		601735551F17369300713DF1 /* YachtTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YachtTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601735581F17369300713DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,9 +91,25 @@
 		601735671F17369300713DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6017356D1F17370F00713DF1 /* YachtTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YachtTimer.entitlements; sourceTree = "<group>"; };
 		6017356E1F17535300713DF1 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
+		602501861F32DF6D009F664A /* YachtTimer - Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YachtTimer - Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		602501891F32DF6D009F664A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		6025018B1F32DF6D009F664A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6025018D1F32DF6D009F664A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		602501921F32DF6D009F664A /* YachtTimer - Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "YachtTimer - Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		602501971F32DF6D009F664A /* TimerInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterfaceController.swift; sourceTree = "<group>"; };
+		602501991F32DF6D009F664A /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		6025019B1F32DF6D009F664A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6025019D1F32DF6D009F664A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		602501AC1F32DFC7009F664A /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		602501AE1F32FC17009F664A /* StopwatchInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchInterfaceController.swift; sourceTree = "<group>"; };
+		602501B01F340256009F664A /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		603217F51F282A3800E4E846 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		603217F71F282A6100E4E846 /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
+		603217F71F282A6100E4E846 /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextToSpeech.swift; path = YachtTimer/TextToSpeech.swift; sourceTree = "<group>"; };
 		603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewCell.swift; sourceTree = "<group>"; };
+		609E7A721F42F514004B0139 /* LapTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTableRow.swift; sourceTree = "<group>"; };
+		609E7A741F42F60F004B0139 /* StopwatchTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTime.swift; sourceTree = "<group>"; };
+		609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTimeDisplay.swift; sourceTree = "<group>"; };
+		609E7A781F430B2F004B0139 /* LabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +117,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602501AD1F32DFC7009F664A /* WatchConnectivity.framework in Frameworks */,
 				603217F61F282A3800E4E846 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6025018F1F32DF6D009F664A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +135,10 @@
 		6017354C1F17369300713DF1 = {
 			isa = PBXGroup;
 			children = (
+				602501A91F32DF8D009F664A /* Shared */,
 				601735571F17369300713DF1 /* YachtTimer */,
+				602501871F32DF6D009F664A /* YachtTimer - Watch */,
+				602501961F32DF6D009F664A /* YachtTimer - Watch Extension */,
 				601735561F17369300713DF1 /* Products */,
 				603217F41F282A3800E4E846 /* Frameworks */,
 			);
@@ -63,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				601735551F17369300713DF1 /* YachtTimer.app */,
+				602501861F32DF6D009F664A /* YachtTimer - Watch.app */,
+				602501921F32DF6D009F664A /* YachtTimer - Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,9 +160,7 @@
 				6017356D1F17370F00713DF1 /* YachtTimer.entitlements */,
 				601735581F17369300713DF1 /* AppDelegate.swift */,
 				6017355A1F17369300713DF1 /* ViewController.swift */,
-				603217F71F282A6100E4E846 /* TextToSpeech.swift */,
 				6017355C1F17369300713DF1 /* Main.storyboard */,
-				60027F871F17685D00D82418 /* LapTime.swift */,
 				603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */,
 				6017356E1F17535300713DF1 /* StopwatchViewController.swift */,
 				60027F891F184BA800D82418 /* testing.playground */,
@@ -87,9 +172,46 @@
 			path = YachtTimer;
 			sourceTree = "<group>";
 		};
+		602501871F32DF6D009F664A /* YachtTimer - Watch */ = {
+			isa = PBXGroup;
+			children = (
+				602501881F32DF6D009F664A /* Interface.storyboard */,
+				6025018B1F32DF6D009F664A /* Assets.xcassets */,
+				6025018D1F32DF6D009F664A /* Info.plist */,
+			);
+			path = "YachtTimer - Watch";
+			sourceTree = "<group>";
+		};
+		602501961F32DF6D009F664A /* YachtTimer - Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				602501971F32DF6D009F664A /* TimerInterfaceController.swift */,
+				609E7A741F42F60F004B0139 /* StopwatchTime.swift */,
+				609E7A721F42F514004B0139 /* LapTableRow.swift */,
+				609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */,
+				609E7A781F430B2F004B0139 /* LabelCollection.swift */,
+				602501991F32DF6D009F664A /* ExtensionDelegate.swift */,
+				602501B01F340256009F664A /* Context.swift */,
+				6025019B1F32DF6D009F664A /* Assets.xcassets */,
+				6025019D1F32DF6D009F664A /* Info.plist */,
+				602501AE1F32FC17009F664A /* StopwatchInterfaceController.swift */,
+			);
+			path = "YachtTimer - Watch Extension";
+			sourceTree = "<group>";
+		};
+		602501A91F32DF8D009F664A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				603217F71F282A6100E4E846 /* TextToSpeech.swift */,
+				60027F871F17685D00D82418 /* LapTime.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 		603217F41F282A3800E4E846 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				602501AC1F32DFC7009F664A /* WatchConnectivity.framework */,
 				603217F51F282A3800E4E846 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -105,15 +227,51 @@
 				601735511F17369300713DF1 /* Sources */,
 				601735521F17369300713DF1 /* Frameworks */,
 				601735531F17369300713DF1 /* Resources */,
+				602501A81F32DF6E009F664A /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6025019F1F32DF6E009F664A /* PBXTargetDependency */,
 			);
 			name = YachtTimer;
 			productName = YachtTimer;
 			productReference = 601735551F17369300713DF1 /* YachtTimer.app */;
 			productType = "com.apple.product-type.application";
+		};
+		602501851F32DF6D009F664A /* YachtTimer - Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602501A71F32DF6E009F664A /* Build configuration list for PBXNativeTarget "YachtTimer - Watch" */;
+			buildPhases = (
+				602501841F32DF6D009F664A /* Resources */,
+				602501A61F32DF6E009F664A /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				602501951F32DF6D009F664A /* PBXTargetDependency */,
+			);
+			name = "YachtTimer - Watch";
+			productName = "YachtTimer - Watch";
+			productReference = 602501861F32DF6D009F664A /* YachtTimer - Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		602501911F32DF6D009F664A /* YachtTimer - Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602501A51F32DF6E009F664A /* Build configuration list for PBXNativeTarget "YachtTimer - Watch Extension" */;
+			buildPhases = (
+				6025018E1F32DF6D009F664A /* Sources */,
+				6025018F1F32DF6D009F664A /* Frameworks */,
+				602501901F32DF6D009F664A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "YachtTimer - Watch Extension";
+			productName = "YachtTimer - Watch Extension";
+			productReference = 602501921F32DF6D009F664A /* YachtTimer - Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -138,6 +296,16 @@
 							};
 						};
 					};
+					602501851F32DF6D009F664A = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = VWUE9JZKY9;
+						ProvisioningStyle = Automatic;
+					};
+					602501911F32DF6D009F664A = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = VWUE9JZKY9;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 601735501F17369300713DF1 /* Build configuration list for PBXProject "YachtTimer" */;
@@ -154,6 +322,8 @@
 			projectRoot = "";
 			targets = (
 				601735541F17369300713DF1 /* YachtTimer */,
+				602501851F32DF6D009F664A /* YachtTimer - Watch */,
+				602501911F32DF6D009F664A /* YachtTimer - Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +336,23 @@
 				601735661F17369300713DF1 /* LaunchScreen.storyboard in Resources */,
 				601735631F17369300713DF1 /* Assets.xcassets in Resources */,
 				6017355E1F17369300713DF1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602501841F32DF6D009F664A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6025018C1F32DF6D009F664A /* Assets.xcassets in Resources */,
+				6025018A1F32DF6D009F664A /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602501901F32DF6D009F664A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6025019C1F32DF6D009F664A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +373,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6025018E1F32DF6D009F664A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				602501AB1F32DFB7009F664A /* LapTime.swift in Sources */,
+				6025019A1F32DF6D009F664A /* ExtensionDelegate.swift in Sources */,
+				609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */,
+				602501AF1F32FC17009F664A /* StopwatchInterfaceController.swift in Sources */,
+				602501AA1F32DFB3009F664A /* TextToSpeech.swift in Sources */,
+				609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */,
+				609E7A771F4303C6004B0139 /* StopwatchTimeDisplay.swift in Sources */,
+				602501B11F340256009F664A /* Context.swift in Sources */,
+				609E7A791F430B2F004B0139 /* LabelCollection.swift in Sources */,
+				602501981F32DF6D009F664A /* TimerInterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		602501951F32DF6D009F664A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 602501911F32DF6D009F664A /* YachtTimer - Watch Extension */;
+			targetProxy = 602501941F32DF6D009F664A /* PBXContainerItemProxy */;
+		};
+		6025019F1F32DF6E009F664A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 602501851F32DF6D009F664A /* YachtTimer - Watch */;
+			targetProxy = 6025019E1F32DF6E009F664A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6017355C1F17369300713DF1 /* Main.storyboard */ = {
@@ -203,6 +420,14 @@
 				601735651F17369300713DF1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		602501881F32DF6D009F664A /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				602501891F32DF6D009F664A /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -327,6 +552,76 @@
 			};
 			name = Release;
 		};
+		602501A11F32DF6E009F664A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				IBSC_MODULE = "YachtTimer___Watch_Extension";
+				INFOPLIST_FILE = "YachtTimer - Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		602501A21F32DF6E009F664A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				IBSC_MODULE = "YachtTimer___Watch_Extension";
+				INFOPLIST_FILE = "YachtTimer - Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		602501A31F32DF6E009F664A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				INFOPLIST_FILE = "YachtTimer - Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		602501A41F32DF6E009F664A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				DEVELOPMENT_TEAM = VWUE9JZKY9;
+				INFOPLIST_FILE = "YachtTimer - Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +639,24 @@
 			buildConfigurations = (
 				6017356B1F17369300713DF1 /* Debug */,
 				6017356C1F17369300713DF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		602501A51F32DF6E009F664A /* Build configuration list for PBXNativeTarget "YachtTimer - Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602501A31F32DF6E009F664A /* Debug */,
+				602501A41F32DF6E009F664A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		602501A71F32DF6E009F664A /* Build configuration list for PBXNativeTarget "YachtTimer - Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602501A11F32DF6E009F664A /* Debug */,
+				602501A21F32DF6E009F664A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
