@@ -16,16 +16,20 @@ struct Context {
     
     let shouldBeCurrentPage: Bool
     
-    init(exist: Bool, shouldStart: Bool, shouldBeCurrentPage: Bool) {
+    let date: Date
+    
+    init(exist: Bool, shouldStart: Bool, shouldBeCurrentPage: Bool, date: Date) {
         self.exist = exist
         self.shouldStart = shouldStart
         self.shouldBeCurrentPage = shouldBeCurrentPage
+        self.date = date
     }
     
     init(_ boolean: Bool) {
         exist = boolean
         shouldStart = boolean
         shouldBeCurrentPage = boolean
+        date = Date()
     }
     
 }

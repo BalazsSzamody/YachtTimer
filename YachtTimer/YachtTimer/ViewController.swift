@@ -28,10 +28,12 @@ class ViewController: UIViewController {
                 startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
                 startButton.setTitle("Start", for: .normal)
                 syncButton.setTitle("Reset", for: .normal)
+                UIApplication.shared.isIdleTimerDisabled = true
             } else {
                 startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
                 startButton.setTitle("Stop", for: .normal)
                 syncButton.setTitle("Sync", for: .normal)
+                UIApplication.shared.isIdleTimerDisabled = false
             }
         }
     }
@@ -150,7 +152,8 @@ extension ViewController {
     func counterFinished() {
         counter = counterReference
         if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
-            stopWatchVC.startStopWatch()
+            stopWatchVC.startDate = Date()
+            stopWatchVC.lapDate = Date()
             self.tabBarController?.selectedViewController = stopWatchVC
         }
         

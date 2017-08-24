@@ -33,7 +33,7 @@ class StopWatchTableViewCell: UITableViewCell {
     
     var lapNumber: Int = 0
     
-    var totalTime: Int = 0 {
+    var totalTime: TimeInterval = 0 {
         didSet {
             updateDisplay(totalTime, at: displayTotal)
             
@@ -41,7 +41,7 @@ class StopWatchTableViewCell: UITableViewCell {
     }
     
     
-    var lapTime: Int = 0 {
+    var lapTime: TimeInterval = 0 {
         didSet {
             updateDisplay(lapTime, at: displayLap)
         }
@@ -72,20 +72,26 @@ class StopWatchTableViewCell: UITableViewCell {
 extension StopWatchTableViewCell {
     //MARK: Display functions
     
-    func updateDisplay(_ time: Int, at display: [UILabel]?) {
+    func updateDisplay(_ timeInterval: TimeInterval, at display: [UILabel]?) {
         guard let display = display else {
             print("Labels not yet initialized")
             return
         }
-        let hours = time / 360000
-        let minutes = ( time % 360000 ) / 6000
-        let seconds = ( time % 6000 ) / 100
-        let fractionSeconds = time % 100
+        let time = StopwatchTime(time: timeInterval)
+        if let hoursString = time.hoursString {
+            display[0].text = hoursString
+        } else {
+            display[0].text = "00"
+        }
         
-        display[0].text = String(hours)
-        display[2].text = String(format: "%02i", minutes)
-        display[4].text = String(format: "%02i", seconds)
-        display[5].text = String(format: "%02i", fractionSeconds)
+        if let minutesString = time.minutesString {
+            display[2].text = minutesString
+        } else {
+            display[2].text = "00"
+        }
+        
+        display[4].text = time.secondsString
+        display[5].text = time.fractionSecondsString
         
         if display.count > 6 {
             display[6].text = "Lap \(lapNumber)"

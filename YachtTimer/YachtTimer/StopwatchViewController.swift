@@ -30,8 +30,8 @@ class StopwatchViewController: UIViewController {
     
     var labels: [UIStackView:[UILabel]]!
     
+    var labelCollections: [LabelCollection] = []
     
-    var secondaryLabels: [UILabel]!
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
@@ -59,8 +59,8 @@ class StopwatchViewController: UIViewController {
                 
             } else {
                 // necessary for not getting optional crash after coming from timer view without opening Stopwatch screen first
-                guard let startButton = startButton else { return }
-                guard let lapButton = lapButton else { return }
+                //guard let startButton = startButton else { return }
+                //guard let lapButton = lapButton else { return }
                 
                 startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
                 startButton.setTitle("Stop", for: .normal)
@@ -68,20 +68,35 @@ class StopwatchViewController: UIViewController {
             }
         }
     }
-    var counter: Int = 0 {
+    
+    var startDate: Date? = nil {
         didSet {
-            if !isFirstLap {
-                updateDisplay(counter, for: smallDisplayStackView)
+            if startDate == nil {
+                totalTime = 0
             }
-            
         }
     }
     
-    var lapCounter: Int = 0 {
+    var lapDate: Date? = nil {
         didSet {
-            updateDisplay(lapCounter, for: displayStackView)
+            if lapDate == nil {
+                lapTime = 0
+            }
         }
     }
+    
+    var totalTime: TimeInterval = 0 {
+        didSet {
+            updateDisplay(totalTime, for: labelCollections[1])
+        }
+    }
+    
+    var lapTime: TimeInterval = 0 {
+        didSet {
+            updateDisplay(lapTime, for: labelCollections[0])
+        }
+    }
+    
     
     
     override func viewDidLoad() {
@@ -90,11 +105,31 @@ class StopwatchViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // necessary to show correct buttons if coming from timer view
+        /*
         if stopWatch != nil {
             startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
             startButton.setTitle("Stop", for: .normal)
             lapButton.setTitle("Lap", for: .normal)
         }
+        */
+        labelCollections = [LabelCollection(itemMultiplier: 1,
+                                            stackView: displayStackView,
+                                            labels: [hoursLabel,
+                                                    hoursSeparator,
+                                                    minutesLabel,
+                                                    minutesSeparator,
+                                                    secondsLabel,
+                                                    secondsSeparator,
+                                                    fractionSecondsLabel]),
+                            LabelCollection(itemMultiplier: 0.8,
+                                            stackView: smallDisplayStackView,
+                                            labels: [smallHoursLabel,
+                                                     smallHoursSeparator,
+                                                     smallMinutesLabel,
+                                                     smallMinutesSeparator,
+                                                     smallSecondsLabel,
+                                                     smallSecondsSeparator,
+                                                     smallFractionSeconds])]
         
         labels = [displayStackView : [hoursLabel,
                                       hoursSeparator,
@@ -112,7 +147,8 @@ class StopwatchViewController: UIViewController {
                                            smallFractionSeconds]
         ]
         
-        updateDisplay(counter, for: displayStackView)
+        
+        updateDisplay(lapTime, for: labelCollections[0])
         
         
         lapsTableView.delegate = self
@@ -123,13 +159,28 @@ class StopwatchViewController: UIViewController {
         smallDisplayStackView.isHidden = true
         
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if startDate != nil && stopWatch == nil {
+            startStopWatch(startedByUser: false)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let stopWatch = stopWatch {
+            stopStopWatch(stopWatch)
+        }
+    }
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if let stopWatch = stopWatch {
             stopStopWatch(stopWatch)
         } else {
-            startStopWatch()
+            startStopWatch(startedByUser: true)
         }
         
         
@@ -139,12 +190,12 @@ class StopwatchViewController: UIViewController {
         
         if stopWatch != nil {
             isFirstLap = false
-            lapCounter = 0
-            LapTime.addLap(counter)
+            lapDate = Date()
+            LapTime.addLap(totalTime)
             lapsTableView.reloadData()
         } else {
-            counter = 0
-            lapCounter = 0
+            startDate = nil
+            lapDate = nil
             LapTime.laps = []
             isFirstLap = true
             lapsTableView.reloadData()
@@ -152,19 +203,29 @@ class StopwatchViewController: UIViewController {
         
     }
     
-    func startStopWatch() {
+    func startStopWatch(startedByUser: Bool) {
         
-            stopWatch = Timer(timeInterval: 0.01, repeats: true) {_ in
-                self.lapCounter += 1
-                self.counter += 1
+        if startedByUser {
+            if startDate == nil {
+                startDate = Date()
+            } else {
+                startDate = Date().addingTimeInterval(-totalTime)
             }
+            if lapDate == nil {
+                lapDate = Date()
+            } else {
+                lapDate = Date().addingTimeInterval(-lapTime)
+            }
+        }
+        
+        
+        stopWatch = Timer(timeInterval: 0.09, repeats: true) {_ in
+            self.totalTime = Date().timeIntervalSince(self.startDate!)
+            self.lapTime = Date().timeIntervalSince(self.lapDate!)
+        }
+        
         guard let stopWatch = stopWatch else { return }
             RunLoop.current.add(stopWatch, forMode: .commonModes)
-        
-        
-        
-        
-        
     }
     
     func stopStopWatch(_ stopWatch: Timer) {
@@ -172,74 +233,10 @@ class StopwatchViewController: UIViewController {
         self.stopWatch = nil
     }
     
-    
-    func updateDisplay(_ time: Int, for stackView: UIStackView) {
-        guard let labels = labels[stackView] else { return }
-        let hours = time / 360000
-        if hours == 0 {
-            if !labels[0].isHidden {
-                labels[0].isHidden = true
-                labels[1].isHidden = true
-            }
-        } else {
-            if labels[0].isHidden {
-                labels[0].isHidden = false
-                labels[1].isHidden = false
-            }
-            labels[0].text = String(hours)
-        }
-        
-        let minutes = ( time % 360000 ) / 6000
-        if hours == 0 && minutes == 0 {
-            if !labels[2].isHidden {
-                labels[2].isHidden = true
-                labels[3].isHidden = true
-                
-            }
-        } else {
-            if labels[2].isHidden {
-                labels[2].isHidden = false
-                labels[3].isHidden = false
-            }
-            labels[2].text = String(format: "%02i", minutes)
-        }
-        
-        let scale = determineScale(for: labels)
-        setStackViewSize(scale, for: stackView)
-        
-        
-        let seconds = ( time % 6000 ) / 100
-        labels[4].text = String(format: "%02i", seconds)
-        let fractionSeconds = time % 100
-        labels[6].text = String(format: "%02i", fractionSeconds)
-    }
-    
-    
-    func determineScale(for labels: [UILabel]) -> CGFloat {
-        //determine scale based on how many labels are hidden
-        var scaleCounter = 0
-        for label in labels {
-            if label.isHidden {
-                scaleCounter += 1
-            }
-        }
-        switch scaleCounter {
-        case 1 ... 2:
-            return 1.33
-        case 3 ... 4:
-            return 1.66
-        default:
-            return 1
-        }
-    }
-    
-    func setStackViewSize(_ scale: CGFloat, for stackView: UIStackView) {
-        //set the size of the visible Labels
-        stackView.transform = CGAffineTransform(scaleX: scale, y: scale)
-        
-    }
-    
+}
 
+extension StopwatchViewController: StopwatchTimeDisplay {
+    
 }
 
 extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {

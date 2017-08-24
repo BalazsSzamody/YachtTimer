@@ -39,33 +39,55 @@ class StopwatchInterfaceController: WKInterfaceController {
     
     var collections: [WatchLabelCollection]? = nil
     
+    var startIcon: ButtonImage!
+    var pauseIcon: ButtonImage!
+    var resetIcon: ButtonImage!
+    var lapIcon: ButtonImage!
+    
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
+    let offWhite = UIColor(red: 197/255, green: 226/255, blue: 196/255, alpha: 1)
     
     var stopWatch: Timer? = nil {
         didSet {
             if stopWatch == nil {
-                startStopButtonImage.setTintColor(green)
+                buttonsForStopped()
             } else {
-                guard let startStopButtonImage = startStopButtonImage else { return }
-                startStopButtonImage.setTintColor(red)
+                buttonsForRunning()
             }
         }
     }
     
-    var counter: Int = 0 {
+    var startDate: Date? = nil {
         didSet {
-            guard let collections = collections else { return }
-            updateDisplay(counter, for: collections[1])
+            if startDate == nil {
+                totalTime = 0
+            }
         }
     }
     
-    var lapCounter: Int = 0 {
+    var lapDate: Date? = nil {
         didSet {
-            guard let collections = collections else { return }
-            updateDisplay(lapCounter, for: collections[0])
+            if lapDate == nil {
+                lapTime = 0
+            }
         }
     }
+    
+    var totalTime: TimeInterval = 0 {
+        didSet{
+            guard let collections = collections else { return }
+            updateDisplay(totalTime, for: collections[1])
+        }
+    }
+    
+    var lapTime: TimeInterval = 0 {
+        didSet{
+            guard let collections = collections else { return }
+            updateDisplay(lapTime, for: collections[0])
+        }
+    }
+    
     
     var context: Any? = nil
     
@@ -81,18 +103,19 @@ class StopwatchInterfaceController: WKInterfaceController {
         } else {
             currentScreenSize = .small
         }
-        
-        checkContext(context)
         setLabels()
         
         
+        
         self.context = context
+        prepareButtonImages()
+        buttonsForStopped()
         startStopButtonImage.setTintColor(green)
         lapTable.setHidden(true)
         smallDisplayGroup.setHidden(true)
         guard let collections = collections else { return }
         for collection in collections {
-            updateDisplay(counter, for: collection)
+            updateDisplay(totalTime, for: collection)
         }
     }
 
@@ -100,14 +123,26 @@ class StopwatchInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         handleContext(context)
+        if stopWatch == nil && startDate != nil {
+            startStopWatch(startedByUser: false)
+        }
         
+    }
+    
+    override func didDeactivate() {
+        // This method is called when watch view controller is no longer visible
+        super.didDeactivate()
+        
+        if let stopWatch = stopWatch {
+            stopStopWatch(stopWatch, stoppedByUser: false)
+        }
     }
     
     func handleContext(_ context: Any?) {
         guard let context = context as? Context else { return }
-        print(context)
         if context.shouldStart {
-            startStopWatch()
+            startDate = context.date
+            lapDate = context.date
         }
         
         if context.shouldBeCurrentPage {
@@ -117,30 +152,24 @@ class StopwatchInterfaceController: WKInterfaceController {
         
     }
 
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
-    
-    
     @IBAction func startStopButtonPressed() {
         if let stopWatch = stopWatch {
-            stopStopWatch(stopWatch)
+            stopStopWatch(stopWatch, stoppedByUser: true)
         } else {
-            startStopWatch()
+            startStopWatch(startedByUser: true)
         }
     }
     @IBAction func lapResetButtonPressed() {
         if stopWatch != nil {
             
-            LapTime.addLap(counter)
+            LapTime.addLap(totalTime)
             loadTableContent()
-            lapCounter = 0
+            lapDate = Date()
             smallDisplayGroup.setHidden(false)
             lapTable.setHidden(false)
         } else {
-            counter = 0
-            lapCounter = 0
+            startDate = nil
+            lapDate = nil
             lapTable.setHidden(true)
             smallDisplayGroup.setHidden(true)
             LapTime.laps = []
@@ -150,28 +179,59 @@ class StopwatchInterfaceController: WKInterfaceController {
     
     
     
-    func startStopWatch() {
-        stopWatch = Timer(timeInterval: 0.01, repeats: true) {_ in
-            self.lapCounter += 1
-            self.counter += 1
+    func startStopWatch(startedByUser: Bool) {
+        if startedByUser {
+            if startDate == nil {
+                startDate = Date()
+            } else {
+                startDate = Date().addingTimeInterval(-totalTime)
+            }
+            if lapDate == nil {
+                lapDate = Date()
+            } else {
+                lapDate = Date().addingTimeInterval(-lapTime)
+            }
+        }
+        
+        stopWatch = Timer(timeInterval: 0.09, repeats: true) {_ in
+            
+            self.totalTime = Date().timeIntervalSince(self.startDate!)
+            self.lapTime = Date().timeIntervalSince(self.lapDate!)
+            
         }
         guard let stopWatch = stopWatch else { return }
         RunLoop.current.add(stopWatch, forMode: .commonModes)
     }
     
-    func stopStopWatch(_ stopWatch: Timer) {
+    func stopStopWatch(_ stopWatch: Timer, stoppedByUser: Bool) {
+        
         stopWatch.invalidate()
         self.stopWatch = nil
+        if !stoppedByUser {
+            buttonsForRunning()
+        }
     }
     
+}
+
+extension StopwatchInterfaceController {
+    // Button handling
     
-    func checkContext(_ context: Any?) {
-        guard let context = context as? [String: String] else { return }
-        if let dataString = context["data"] {
-            if dataString == "Start" {
-                startStopWatch()
-            }
-        }
+    func prepareButtonImages() {
+        startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
+        pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
+        resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
+        lapIcon = ButtonImage(image: #imageLiteral(resourceName: "resetIcon"), color: offWhite)
+    }
+    
+    func buttonsForStopped() {
+        startStopButtonImage.setImageAndColor(startIcon)
+        lapResetButtonImage.setImageAndColor(resetIcon)
+    }
+    
+    func buttonsForRunning() {
+        startStopButtonImage.setImageAndColor(pauseIcon)
+        lapResetButtonImage.setImageAndColor(lapIcon)
     }
 }
 

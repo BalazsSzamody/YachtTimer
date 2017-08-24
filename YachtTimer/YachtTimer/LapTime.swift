@@ -10,10 +10,10 @@ import Foundation
 
 struct LapTime: CustomStringConvertible {
     
-    let totalTime: Int
-    let previousLap: Int
+    let totalTime: TimeInterval
+    let previousLap: TimeInterval
     
-    var lapTime: Int {
+    var lapTime: TimeInterval {
         return totalTime - previousLap
     }
     
@@ -25,7 +25,7 @@ struct LapTime: CustomStringConvertible {
     
     static var laps: [LapTime] = []
     
-    static func addLap(_ time: Int) {
+    static func addLap(_ time: TimeInterval) {
         guard !laps.isEmpty else {
             laps.insert(LapTime(totalTime: time, previousLap: 0, lapNumber: laps.count + 1), at: 0)
             return

@@ -9,7 +9,12 @@
 import Foundation
 
 struct StopwatchTime {
-    let counter: Int
+    
+    let time: TimeInterval
+    
+    var counter: Int {
+        return Int(time * 100)
+    }
     
     var hoursString: String? {
         let hours = counter / 360000

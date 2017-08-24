@@ -9,21 +9,24 @@
 import Foundation
 import WatchKit
 
+enum ScreenSize {
+    case small
+    case big
+}
+
 protocol WatchStopwatchTimeDisplay {
     var collections: [WatchLabelCollection]? { get set }
     var currentScreenSize: ScreenSize? { get set }
     
     
-    func updateDisplay(_ counter: Int, for collection: WatchLabelCollection)
-    func determineScale(_ time: StopwatchTime, for collection: WatchLabelCollection) -> CGFloat
-    func setText(_ inputString: String, for size: CGFloat) -> NSAttributedString
+    func updateDisplay(_ timeInterval: TimeInterval, for collection: WatchLabelCollection)
 }
 
 extension WatchStopwatchTimeDisplay {
     
-    func updateDisplay(_ counter: Int, for collection: WatchLabelCollection) {
+    func updateDisplay(_ timeInterval: TimeInterval, for collection: WatchLabelCollection) {
         let labels = collection.labels
-        let time = StopwatchTime(counter: counter)
+        let time = StopwatchTime(time: timeInterval)
         let multiplier = determineScale(time, for: collection)
         let mainFontSize = 27 * multiplier
         let subFontSize = 23 * multiplier

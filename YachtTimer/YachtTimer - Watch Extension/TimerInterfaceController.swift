@@ -9,10 +9,6 @@
 import WatchKit
 import Foundation
 
-enum ScreenSize{
-    case small
-    case big
-}
 
 
 class TimerInterfaceController: WKInterfaceController {
@@ -21,7 +17,7 @@ class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var secondsLabel: WKInterfaceLabel!
     @IBOutlet var timerGroup: WKInterfaceGroup!
 
-    @IBOutlet var startStopButtonImage: WKInterfaceImage!
+    @IBOutlet var startStopButtonImage: WKInterfaceImage! 
     @IBOutlet var syncResetButtonImage: WKInterfaceImage!
     
     @IBOutlet var swipeUpGestureRecognizer: WKSwipeGestureRecognizer!
@@ -30,51 +26,73 @@ class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var upArrowImage: WKInterfaceImage!
     @IBOutlet var downArrowImage: WKInterfaceImage!
     
-    var currentScreenSize: ScreenSize!
+    var collection: WatchLabelCollection? = nil
+    
+    var currentScreenSize: ScreenSize? = nil
     
     var counterReference: Int = 300
     
-    var timer: Timer? = nil {
-        didSet {
-            if timer == nil {
-                //Handle Timer not running stuff
-                startStopButtonImage.setTintColor(green)
-                upArrowImage.setHidden(false)
-                downArrowImage.setHidden(false)
-                
-            } else {
-                //Handle Timer is running stuff
-                startStopButtonImage.setTintColor(red)
-                upArrowImage.setHidden(true)
-                downArrowImage.setHidden(true)
-            }
-        }
-    }
-    
     let alert = TextToSpeech()
+    
+    var context: Any? = nil
     
     // Used Colors
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     let yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
     let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
+    let offWhite = UIColor(red: 197/255, green: 226/255, blue: 196/255, alpha: 1)
     var currentLabelColor: UIColor!
+    
+    //Button image definitions in extension
+    var startIcon: ButtonImage!
+    var pauseIcon: ButtonImage!
+    var resetIcon: ButtonImage!
+    var syncIcon: ButtonImage!
+    
+    var crownRotation: Double = 0 {
+        didSet {
+            if crownRotation > 0.5 {
+                crownRotation = 0
+                addMinute()
+            } else if crownRotation < -0.5 {
+                crownRotation = 0
+                subtractMinute()
+            }
+        }
+    }
+    
+    var timer: Timer? = nil {
+        didSet {
+            if timer == nil {
+                //Handle Timer not running stuff
+                buttonsForStopped()
+                
+            } else {
+                //Handle Timer is running stuff
+                buttonsForRunning()
+                
+            }
+        }
+    }
     
     var counter: Int = 300 {
         didSet {
             if counter < 0 {
                 counter = 0
                 return
+            } else if counter == 0, let timer = timer {
+                stopTimer(timer)
+                counterFinished()
             }
             
             if timer != nil {
                 manageSpeech(counter)
             }
-            manageLabels(counter)
-            updateDisplay(counter)
+            manageLabelColors(counter)
+            updateDisplay(counter, for: collection)
         }
     }
     
-    var context: Any? = nil
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -86,29 +104,30 @@ class TimerInterfaceController: WKInterfaceController {
         } else {
             currentScreenSize = .small
         }
+        collection = WatchLabelCollection(itemMultiplier: 1, labels: [minutesLabel, separatorLabel, secondsLabel])
         counter = counterReference
         self.context = context
-        startStopButtonImage.setTintColor(green)
+        prepareButtonImages()
+        buttonsForStopped()
+        crownSequencer.delegate = self
         
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        if context == nil {
-         
-            WKInterfaceController.reloadRootControllers(withNames: ["TimerInterface", "StopwatchInterface"], contexts: [[], [true, true]])
-        }
-        
+        crownSequencer.focus()
         
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        crownSequencer.resignFocus()
     }
     
     @IBAction func startStopPressed() {
+        playHaptic(.start)
         if let timer = timer {
             stopTimer(timer)
         } else {
@@ -173,15 +192,20 @@ extension TimerInterfaceController {
     
     func counterFinished() {
         counter = counterReference
-        //presentController(withName: "StopwatchInterface", context: ["segue": "pagebased", "data": "Start"])
-        //pushController(withName: "StopwatchInterface", context: "StartStopWatch")
+        
         
         WKInterfaceController.reloadRootControllers(withNames: ["TimerInterface", "StopwatchInterface"], contexts: [Context(false), Context(true)])
     }
     
     func addMinute() {
+        
         guard timer == nil else { return }
-        guard counter < 3600 else { return }
+        guard counter < 3600 else {
+            playHaptic(.failure)
+            return
+        }
+        
+        playHaptic(.directionUp)
         if counter % 60 != 0 {
             counter += 60 - ( counter % 60 )
         } else {
@@ -191,8 +215,14 @@ extension TimerInterfaceController {
     }
     
     func subtractMinute() {
+        
         guard timer == nil else { return }
-        guard counter > 60 else { return }
+        guard counter > 60 else {
+            playHaptic(.failure)
+            return
+        }
+        
+        playHaptic(.directionDown)
         if counter % 60 != 0 {
             counter -=  counter % 60
         } else {
@@ -202,80 +232,23 @@ extension TimerInterfaceController {
     
 }
 
-extension TimerInterfaceController {
+extension TimerInterfaceController: WatchTimerTimeDisplay {
     //MARK: Label handling
-    func updateDisplay(_ counter: Int) {
-        let time = calculateTime(counter)
-        
-        if let minutesText = time.minutesText {
-            minutesLabel.setHidden(false)
-            separatorLabel.setHidden(false)
-            minutesLabel.setText(minutesText)
-            secondsLabel.setText(time.secondsText)
-        } else {
-            minutesLabel.setHidden(true)
-            separatorLabel.setHidden(true)
-            if currentScreenSize == .big {
-                secondsLabel.setAttributedText(NSAttributedString(string: time.secondsText, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 95, weight: UIFontWeightRegular)]))
-            } else {
-                secondsLabel.setAttributedText(NSAttributedString(string: time.secondsText, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 77, weight: UIFontWeightRegular)]))
-            }
-            
-        }
-        
-        
-    }
+    // updateDisplay is default in WatchTimerTimeDisplay protocol
     
-    func manageLabels(_ time: Int) {
+    func manageLabelColors(_ time: Int) {
         switch time{
         case 60 ... 119:
             setLabelColor(yellow)
-            resetSeconds()
             
         case 1 ... 59:
-            enlargeSeconds()
             setLabelColor(red)
-            
-        case 0:
-            if let timer = timer {
-                stopTimer(timer)
-                counterFinished()
-            }
-            resetSeconds()
+       
             
         default:
             setLabelColor(green)
-            resetSeconds()
             
         }
-    }
-    
-    func resetSeconds() {
-        if currentScreenSize == .big {
-            secondsLabel.setWidth(71)
-            secondsLabel.setHeight(55)
-        } else {
-            secondsLabel.setWidth(62)
-            secondsLabel.setHeight(45)
-        }
-        
-    }
-    
-    func enlargeSeconds() {
-        if currentScreenSize == .big {
-            secondsLabel.setWidth(106)
-            secondsLabel.setHeight(87)
-        } else {
-            secondsLabel.setWidth(100)
-            secondsLabel.setHeight(65)
-        }
-    }
-    
-    func calculateTime(_ counter: Int) -> (minutesText: String?, secondsText: String) {
-        let minutes = counter / 60
-        let seconds = counter % 60
-        
-        return (minutes > 0 ? String(format: "%02i", minutes) : nil, String(format: "%02i", seconds))
     }
     
     func setLabelColor(_ color: UIColor) {
@@ -289,25 +262,70 @@ extension TimerInterfaceController {
 }
 
 extension TimerInterfaceController {
-    //MARK: Speech handling
+    // Button handling
+    
+    func prepareButtonImages() {
+        startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
+        pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
+        resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
+        syncIcon = ButtonImage(image: #imageLiteral(resourceName: "syncIcon"), color: offWhite)
+    }
+    
+    func buttonsForStopped() {
+        startStopButtonImage.setImageAndColor(startIcon)
+        syncResetButtonImage.setImageAndColor(resetIcon)
+        upArrowImage.setHidden(false)
+        downArrowImage.setHidden(false)
+    }
+    
+    func buttonsForRunning() {
+        startStopButtonImage.setImageAndColor(pauseIcon)
+        syncResetButtonImage.setImageAndColor(syncIcon)
+        upArrowImage.setHidden(true)
+        downArrowImage.setHidden(true)
+    }
+}
+
+extension TimerInterfaceController {
+    //MARK: Alert handling
     
     func manageSpeech(_ time: Int) {
         
         if counter % 60 == 0 {
             alert.sayOutLoud(counter)
+            playHaptic(.notification)
         } else if counter < 120 && counter % 30 == 0 {
             alert.sayOutLoud(counter)
+            playHaptic(.notification)
         } else if counter < 60 && counter % 15 == 0 {
             alert.sayOutLoud(counter)
+            playHaptic(.notification)
         } else if counter < 30 && counter % 5 == 0 {
             alert.sayOutLoud(counter)
+            playHaptic(.notification)
         } else if counter < 15 {
             alert.sayOutLoud(counter)
+            playHaptic(.notification)
         } else if counter == 0 {
             alert.sayOutLoud("Start")
+            playHaptic(.notification)
         }
         
     }
+    
+    func playHaptic(_ type: WKHapticType) {
+        WKInterfaceDevice.current().play(type)
+    }
 }
 
+
+extension TimerInterfaceController: WKCrownDelegate {
+    func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
+        crownRotation += rotationalDelta
+    }
+    
+    func crownDidBecomeIdle(_ crownSequencer: WKCrownSequencer?) {
+        crownRotation = 0
+    }
+}
 

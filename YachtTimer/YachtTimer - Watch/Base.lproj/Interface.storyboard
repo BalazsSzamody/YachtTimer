@@ -12,11 +12,11 @@
         <!--Timer-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="TimerInterface" title="Timer" id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="YachtTimer___Watch_Extension">
+                <controller identifier="TimerInterface" title="Timer" backgroundImage="WatchBackground" id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="YachtTimer___Watch_Extension">
                     <items>
                         <group width="1" height="165" alignment="left" layout="vertical" spacing="0.0" id="2of-h6-qS8">
                             <items>
-                                <group width="1" height="118" alignment="center" layout="vertical" id="JvY-Rj-zET">
+                                <group width="1" height="105" alignment="center" layout="vertical" spacing="0.0" id="JvY-Rj-zET">
                                     <items>
                                         <group width="1" height="15" alignment="left" verticalAlignment="center" id="lBM-if-5Pe">
                                             <items>
@@ -36,25 +36,25 @@
                                         </group>
                                         <group width="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" id="u8E-QV-bpZ">
                                             <items>
-                                                <label width="71" height="55" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="m1H-WA-51N">
+                                                <label width="71" height="46" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="m1H-WA-51N">
                                                     <fontDescription key="font" type="system" pointSize="63"/>
-                                                    <variation key="device=watch38mm" height="45" width="62">
+                                                    <variation key="device=watch38mm" height="40" width="62">
                                                         <fontDescription key="font" type="system" pointSize="55"/>
                                                     </variation>
                                                 </label>
-                                                <label height="55" alignment="center" verticalAlignment="center" text=":" textAlignment="center" baselineAdjustment="alignCenters" id="nZH-QB-EFj">
+                                                <label height="46" alignment="center" verticalAlignment="center" text=":" textAlignment="center" baselineAdjustment="alignCenters" id="nZH-QB-EFj">
                                                     <fontDescription key="font" type="system" pointSize="30"/>
-                                                    <variation key="device=watch38mm" height="45"/>
+                                                    <variation key="device=watch38mm" height="40"/>
                                                 </label>
-                                                <label width="71" height="55" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="zYX-If-yw2">
+                                                <label width="71" height="46" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="zYX-If-yw2">
                                                     <fontDescription key="font" type="system" pointSize="63"/>
-                                                    <variation key="device=watch38mm" height="45" width="62">
+                                                    <variation key="device=watch38mm" height="40" width="62">
                                                         <fontDescription key="font" type="system" pointSize="55"/>
                                                     </variation>
                                                 </label>
                                             </items>
                                         </group>
-                                        <group width="1" height="15" alignment="left" verticalAlignment="center" id="aDC-Lx-1Ps">
+                                        <group width="1" height="15" alignment="center" verticalAlignment="center" id="aDC-Lx-1Ps">
                                             <items>
                                                 <button alignment="left" id="vOH-3k-8bt">
                                                     <group key="contentGroup" width="1" height="1" alignment="left" id="EDu-qq-NjL">
@@ -85,12 +85,12 @@
                                     </gestureRecognizers>
                                     <variation key="device=watch38mm" height="95"/>
                                 </group>
-                                <group width="1" alignment="center" verticalAlignment="bottom" spacing="30" id="8Sj-zn-KmB">
+                                <group width="1" alignment="center" verticalAlignment="center" spacing="30" id="8Sj-zn-KmB">
                                     <items>
                                         <button alignment="center" verticalAlignment="center" id="bDC-Cl-AaN">
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="Zgm-mp-QhL">
                                                 <items>
-                                                    <imageView width="40" height="40" alignment="left" image="button" id="ujI-QE-J1W">
+                                                    <imageView width="40" height="40" alignment="center" verticalAlignment="center" image="startIcon" contentMode="scaleAspectFit" id="ujI-QE-J1W">
                                                         <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
@@ -103,7 +103,7 @@
                                         <button alignment="center" verticalAlignment="center" id="dfI-06-90w">
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="vZP-Dx-8dO">
                                                 <items>
-                                                    <imageView width="40" height="40" alignment="left" image="button" id="flQ-D0-iiF">
+                                                    <imageView width="40" height="40" alignment="left" image="closeIcon" id="flQ-D0-iiF">
                                                         <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
@@ -135,12 +135,12 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="56.666666666666671" y="95.461538461538467"/>
+            <point key="canvasLocation" x="85" y="58"/>
         </scene>
         <!--StopwatchInterface-->
         <scene sceneID="mpd-tR-5e7">
             <objects>
-                <controller identifier="StopwatchInterface" id="uAh-50-xVP" customClass="StopwatchInterfaceController" customModule="YachtTimer___Watch_Extension">
+                <controller identifier="StopwatchInterface" backgroundImage="WatchBackground" id="uAh-50-xVP" customClass="StopwatchInterfaceController" customModule="YachtTimer___Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="2" id="NbD-eQ-ery">
                             <items>
@@ -251,7 +251,7 @@
                                         <button alignment="center" verticalAlignment="center" id="nic-AX-Gx5">
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="hiy-u5-6wI">
                                                 <items>
-                                                    <imageView width="40" height="40" alignment="left" image="button" id="WKi-pn-ru0">
+                                                    <imageView width="40" height="40" alignment="left" image="startIcon" id="WKi-pn-ru0">
                                                         <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
@@ -263,7 +263,7 @@
                                         <button alignment="center" verticalAlignment="center" id="GQV-w4-cfd">
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="sxl-lV-5Rb">
                                                 <items>
-                                                    <imageView width="40" height="40" alignment="left" image="button" id="8Ul-hu-HbX">
+                                                    <imageView width="40" height="40" alignment="left" image="closeIcon" id="8Ul-hu-HbX">
                                                         <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
@@ -438,7 +438,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="329" y="96"/>
+            <point key="canvasLocation" x="321" y="95"/>
         </scene>
     </scenes>
 </document>

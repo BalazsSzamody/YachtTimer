@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		60027F881F17685D00D82418 /* LapTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60027F871F17685D00D82418 /* LapTime.swift */; };
+		600AE0531F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AE0521F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift */; };
+		600AE0551F4D012800595E66 /* TimerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AE0541F4D012800595E66 /* TimerTime.swift */; };
 		601735591F17369300713DF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601735581F17369300713DF1 /* AppDelegate.swift */; };
 		6017355B1F17369300713DF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017355A1F17369300713DF1 /* ViewController.swift */; };
 		6017355E1F17369300713DF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6017355C1F17369300713DF1 /* Main.storyboard */; };
@@ -32,8 +34,15 @@
 		603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */; };
 		609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A721F42F514004B0139 /* LapTableRow.swift */; };
 		609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
-		609E7A771F4303C6004B0139 /* StopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */; };
-		609E7A791F430B2F004B0139 /* LabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* LabelCollection.swift */; };
+		609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */; };
+		609E7A791F430B2F004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
+		609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
+		609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
+		609E7A7E1F4A455F004B0139 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A7D1F4A455F004B0139 /* Accessories.swift */; };
+		609E7A7F1F4A456C004B0139 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A7D1F4A455F004B0139 /* Accessories.swift */; };
+		609E7A831F4A4C83004B0139 /* LabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A821F4A4C83004B0139 /* LabelCollection.swift */; };
+		609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */; };
+		60C85CD61F4C229B00DB7A33 /* WKInterfaceImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +90,8 @@
 /* Begin PBXFileReference section */
 		60027F871F17685D00D82418 /* LapTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LapTime.swift; path = YachtTimer/LapTime.swift; sourceTree = "<group>"; };
 		60027F891F184BA800D82418 /* testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing.playground; sourceTree = "<group>"; };
+		600AE0521F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTimerTimeDisplay.swift; sourceTree = "<group>"; };
+		600AE0541F4D012800595E66 /* TimerTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTime.swift; sourceTree = "<group>"; };
 		601735551F17369300713DF1 /* YachtTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YachtTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601735581F17369300713DF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6017355A1F17369300713DF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,9 +118,13 @@
 		603217F71F282A6100E4E846 /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextToSpeech.swift; path = YachtTimer/TextToSpeech.swift; sourceTree = "<group>"; };
 		603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewCell.swift; sourceTree = "<group>"; };
 		609E7A721F42F514004B0139 /* LapTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTableRow.swift; sourceTree = "<group>"; };
-		609E7A741F42F60F004B0139 /* StopwatchTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTime.swift; sourceTree = "<group>"; };
-		609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTimeDisplay.swift; sourceTree = "<group>"; };
-		609E7A781F430B2F004B0139 /* LabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCollection.swift; sourceTree = "<group>"; };
+		609E7A741F42F60F004B0139 /* StopwatchTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchTime.swift; path = "YachtTimer - Watch Extension/StopwatchTime.swift"; sourceTree = "<group>"; };
+		609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchStopwatchTimeDisplay.swift; sourceTree = "<group>"; };
+		609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchLabelCollection.swift; sourceTree = "<group>"; };
+		609E7A7D1F4A455F004B0139 /* Accessories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessories.swift; sourceTree = "<group>"; };
+		609E7A821F4A4C83004B0139 /* LabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCollection.swift; sourceTree = "<group>"; };
+		609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTimeDisplay.swift; sourceTree = "<group>"; };
+		60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKInterfaceImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +147,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		600AE0561F4E697A00595E66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */,
+				602501B01F340256009F664A /* Context.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		600AE0571F4E69B700595E66 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				602501971F32DF6D009F664A /* TimerInterfaceController.swift */,
+				609E7A721F42F514004B0139 /* LapTableRow.swift */,
+				602501991F32DF6D009F664A /* ExtensionDelegate.swift */,
+				602501AE1F32FC17009F664A /* StopwatchInterfaceController.swift */,
+				60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */,
+				609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */,
+				600AE0521F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		6017354C1F17369300713DF1 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +206,8 @@
 				601735641F17369300713DF1 /* LaunchScreen.storyboard */,
 				601735671F17369300713DF1 /* Info.plist */,
 				6017355F1F17369300713DF1 /* YachtTimer.xcdatamodeld */,
+				609E7A821F4A4C83004B0139 /* LabelCollection.swift */,
+				609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */,
 			);
 			path = YachtTimer;
 			sourceTree = "<group>";
@@ -185,16 +225,10 @@
 		602501961F32DF6D009F664A /* YachtTimer - Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				602501971F32DF6D009F664A /* TimerInterfaceController.swift */,
-				609E7A741F42F60F004B0139 /* StopwatchTime.swift */,
-				609E7A721F42F514004B0139 /* LapTableRow.swift */,
-				609E7A761F4303C6004B0139 /* StopwatchTimeDisplay.swift */,
-				609E7A781F430B2F004B0139 /* LabelCollection.swift */,
-				602501991F32DF6D009F664A /* ExtensionDelegate.swift */,
-				602501B01F340256009F664A /* Context.swift */,
+				600AE0571F4E69B700595E66 /* Controller */,
+				600AE0561F4E697A00595E66 /* Model */,
 				6025019B1F32DF6D009F664A /* Assets.xcassets */,
 				6025019D1F32DF6D009F664A /* Info.plist */,
-				602501AE1F32FC17009F664A /* StopwatchInterfaceController.swift */,
 			);
 			path = "YachtTimer - Watch Extension";
 			sourceTree = "<group>";
@@ -204,6 +238,9 @@
 			children = (
 				603217F71F282A6100E4E846 /* TextToSpeech.swift */,
 				60027F871F17685D00D82418 /* LapTime.swift */,
+				609E7A741F42F60F004B0139 /* StopwatchTime.swift */,
+				609E7A7D1F4A455F004B0139 /* Accessories.swift */,
+				600AE0541F4D012800595E66 /* TimerTime.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -365,10 +402,15 @@
 			files = (
 				6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */,
 				603217F81F282A6100E4E846 /* TextToSpeech.swift in Sources */,
+				609E7A7F1F4A456C004B0139 /* Accessories.swift in Sources */,
+				609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */,
+				609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */,
 				601735611F17369300713DF1 /* YachtTimer.xcdatamodeld in Sources */,
 				60027F881F17685D00D82418 /* LapTime.swift in Sources */,
+				609E7A831F4A4C83004B0139 /* LabelCollection.swift in Sources */,
 				6017355B1F17369300713DF1 /* ViewController.swift in Sources */,
 				603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */,
+				609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */,
 				601735591F17369300713DF1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,14 +420,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				602501AB1F32DFB7009F664A /* LapTime.swift in Sources */,
+				60C85CD61F4C229B00DB7A33 /* WKInterfaceImageExtension.swift in Sources */,
 				6025019A1F32DF6D009F664A /* ExtensionDelegate.swift in Sources */,
+				609E7A7E1F4A455F004B0139 /* Accessories.swift in Sources */,
+				600AE0551F4D012800595E66 /* TimerTime.swift in Sources */,
 				609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */,
 				602501AF1F32FC17009F664A /* StopwatchInterfaceController.swift in Sources */,
 				602501AA1F32DFB3009F664A /* TextToSpeech.swift in Sources */,
 				609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */,
-				609E7A771F4303C6004B0139 /* StopwatchTimeDisplay.swift in Sources */,
+				609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */,
+				600AE0531F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift in Sources */,
 				602501B11F340256009F664A /* Context.swift in Sources */,
-				609E7A791F430B2F004B0139 /* LabelCollection.swift in Sources */,
+				609E7A791F430B2F004B0139 /* WatchLabelCollection.swift in Sources */,
 				602501981F32DF6D009F664A /* TimerInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
