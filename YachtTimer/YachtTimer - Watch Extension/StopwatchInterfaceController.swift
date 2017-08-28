@@ -175,43 +175,10 @@ class StopwatchInterfaceController: WKInterfaceController {
             LapTime.laps = []
         }
     }
-    
-    
-    
-    
-    func startStopWatch(startedByUser: Bool) {
-        if startedByUser {
-            if startDate == nil {
-                startDate = Date()
-            } else {
-                startDate = Date().addingTimeInterval(-totalTime)
-            }
-            if lapDate == nil {
-                lapDate = Date()
-            } else {
-                lapDate = Date().addingTimeInterval(-lapTime)
-            }
-        }
-        
-        stopWatch = Timer(timeInterval: 0.09, repeats: true) {_ in
-            
-            self.totalTime = Date().timeIntervalSince(self.startDate!)
-            self.lapTime = Date().timeIntervalSince(self.lapDate!)
-            
-        }
-        guard let stopWatch = stopWatch else { return }
-        RunLoop.current.add(stopWatch, forMode: .commonModes)
-    }
-    
-    func stopStopWatch(_ stopWatch: Timer, stoppedByUser: Bool) {
-        
-        stopWatch.invalidate()
-        self.stopWatch = nil
-        if !stoppedByUser {
-            buttonsForRunning()
-        }
-    }
-    
+}
+
+extension StopwatchInterfaceController: StopwatchManager {
+    //Stopwatch model
 }
 
 extension StopwatchInterfaceController {

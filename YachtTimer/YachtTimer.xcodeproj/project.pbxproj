@@ -17,6 +17,8 @@
 		601735631F17369300713DF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 601735621F17369300713DF1 /* Assets.xcassets */; };
 		601735661F17369300713DF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601735641F17369300713DF1 /* LaunchScreen.storyboard */; };
 		6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017356E1F17535300713DF1 /* StopwatchViewController.swift */; };
+		601D0EF21F540F4F00F418BF /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601D0EF11F540F4F00F418BF /* StopwatchManager.swift */; };
+		601D0EF31F540F4F00F418BF /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601D0EF11F540F4F00F418BF /* StopwatchManager.swift */; };
 		6025018A1F32DF6D009F664A /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602501881F32DF6D009F664A /* Interface.storyboard */; };
 		6025018C1F32DF6D009F664A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6025018B1F32DF6D009F664A /* Assets.xcassets */; };
 		602501931F32DF6D009F664A /* YachtTimer - Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 602501921F32DF6D009F664A /* YachtTimer - Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -32,6 +34,8 @@
 		603217F61F282A3800E4E846 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603217F51F282A3800E4E846 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		603217F81F282A6100E4E846 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F71F282A6100E4E846 /* TextToSpeech.swift */; };
 		603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */; };
+		6033802E1F54002300693B40 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6033802D1F54002200693B40 /* TimerManager.swift */; };
+		6033802F1F54002300693B40 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6033802D1F54002200693B40 /* TimerManager.swift */; };
 		609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A721F42F514004B0139 /* LapTableRow.swift */; };
 		609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
 		609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */; };
@@ -102,6 +106,7 @@
 		601735671F17369300713DF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6017356D1F17370F00713DF1 /* YachtTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YachtTimer.entitlements; sourceTree = "<group>"; };
 		6017356E1F17535300713DF1 /* StopwatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
+		601D0EF11F540F4F00F418BF /* StopwatchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
 		602501861F32DF6D009F664A /* YachtTimer - Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YachtTimer - Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		602501891F32DF6D009F664A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		6025018B1F32DF6D009F664A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +122,7 @@
 		603217F51F282A3800E4E846 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		603217F71F282A6100E4E846 /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextToSpeech.swift; path = YachtTimer/TextToSpeech.swift; sourceTree = "<group>"; };
 		603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewCell.swift; sourceTree = "<group>"; };
+		6033802D1F54002200693B40 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		609E7A721F42F514004B0139 /* LapTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTableRow.swift; sourceTree = "<group>"; };
 		609E7A741F42F60F004B0139 /* StopwatchTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchTime.swift; path = "YachtTimer - Watch Extension/StopwatchTime.swift"; sourceTree = "<group>"; };
 		609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchStopwatchTimeDisplay.swift; sourceTree = "<group>"; };
@@ -241,6 +247,8 @@
 				609E7A741F42F60F004B0139 /* StopwatchTime.swift */,
 				609E7A7D1F4A455F004B0139 /* Accessories.swift */,
 				600AE0541F4D012800595E66 /* TimerTime.swift */,
+				6033802D1F54002200693B40 /* TimerManager.swift */,
+				601D0EF11F540F4F00F418BF /* StopwatchManager.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -403,8 +411,10 @@
 				6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */,
 				603217F81F282A6100E4E846 /* TextToSpeech.swift in Sources */,
 				609E7A7F1F4A456C004B0139 /* Accessories.swift in Sources */,
+				601D0EF21F540F4F00F418BF /* StopwatchManager.swift in Sources */,
 				609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */,
 				609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */,
+				6033802E1F54002300693B40 /* TimerManager.swift in Sources */,
 				601735611F17369300713DF1 /* YachtTimer.xcdatamodeld in Sources */,
 				60027F881F17685D00D82418 /* LapTime.swift in Sources */,
 				609E7A831F4A4C83004B0139 /* LabelCollection.swift in Sources */,
@@ -425,8 +435,10 @@
 				609E7A7E1F4A455F004B0139 /* Accessories.swift in Sources */,
 				600AE0551F4D012800595E66 /* TimerTime.swift in Sources */,
 				609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */,
+				6033802F1F54002300693B40 /* TimerManager.swift in Sources */,
 				602501AF1F32FC17009F664A /* StopwatchInterfaceController.swift in Sources */,
 				602501AA1F32DFB3009F664A /* TextToSpeech.swift in Sources */,
+				601D0EF31F540F4F00F418BF /* StopwatchManager.swift in Sources */,
 				609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */,
 				609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */,
 				600AE0531F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift in Sources */,

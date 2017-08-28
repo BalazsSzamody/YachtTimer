@@ -16,7 +16,7 @@
                     <items>
                         <group width="1" height="165" alignment="left" layout="vertical" spacing="0.0" id="2of-h6-qS8">
                             <items>
-                                <group width="1" height="105" alignment="center" layout="vertical" spacing="0.0" id="JvY-Rj-zET">
+                                <group width="1" height="105" alignment="center" layout="vertical" spacing="2" id="JvY-Rj-zET">
                                     <items>
                                         <group width="1" height="15" alignment="left" verticalAlignment="center" id="lBM-if-5Pe">
                                             <items>
@@ -120,6 +120,7 @@
                             <variation key="device=watch38mm" height="140"/>
                         </group>
                     </items>
+                    <variation key="device=watch38mm" backgroundImage="WatchBackground_38"/>
                     <connections>
                         <outlet property="downArrowImage" destination="yvX-jh-Cvd" id="lOE-jM-A1Y"/>
                         <outlet property="minutesLabel" destination="m1H-WA-51N" id="9Yo-sl-hso"/>
@@ -140,9 +141,9 @@
         <!--StopwatchInterface-->
         <scene sceneID="mpd-tR-5e7">
             <objects>
-                <controller identifier="StopwatchInterface" backgroundImage="WatchBackground" id="uAh-50-xVP" customClass="StopwatchInterfaceController" customModule="YachtTimer___Watch_Extension">
+                <controller identifier="StopwatchInterface" backgroundImage="WatchBackground2" contentMode="top" id="uAh-50-xVP" customClass="StopwatchInterfaceController" customModule="YachtTimer___Watch_Extension">
                     <items>
-                        <group width="1" alignment="left" layout="vertical" spacing="2" id="NbD-eQ-ery">
+                        <group width="1" alignment="left" contentMode="top" layout="vertical" spacing="2" id="NbD-eQ-ery">
                             <items>
                                 <group width="1" height="40" alignment="left" id="ZaD-um-s5B">
                                     <items>
@@ -415,6 +416,7 @@
                             </items>
                         </group>
                     </items>
+                    <variation key="device=watch38mm" backgroundImage="WatchBackground2_38"/>
                     <connections>
                         <outlet property="displayGroup" destination="XZU-r9-hPN" id="MY2-OS-9r2"/>
                         <outlet property="fractionSecondsLabel" destination="9c1-tu-c2Y" id="7Y1-DL-9iM"/>

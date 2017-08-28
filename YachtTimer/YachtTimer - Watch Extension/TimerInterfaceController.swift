@@ -53,10 +53,10 @@ class TimerInterfaceController: WKInterfaceController {
         didSet {
             if crownRotation > 0.5 {
                 crownRotation = 0
-                addMinute()
+                addMinute(failure: failHaptic, completion: completeHaptic)
             } else if crownRotation < -0.5 {
                 crownRotation = 0
-                subtractMinute()
+                subtractMinute(failure: failHaptic, completion: completeHaptic)
             }
         }
     }
@@ -92,6 +92,8 @@ class TimerInterfaceController: WKInterfaceController {
             updateDisplay(counter, for: collection)
         }
     }
+    
+    var endDate: Date? = nil
     
     
     override func awake(withContext context: Any?) {
@@ -132,7 +134,6 @@ class TimerInterfaceController: WKInterfaceController {
             stopTimer(timer)
         } else {
             startTimer()
-            alert.sayOutLoud(counter)
         }
     }
     
@@ -155,79 +156,33 @@ class TimerInterfaceController: WKInterfaceController {
         guard let sender = sender as? WKSwipeGestureRecognizer else { return }
         
         if sender == swipeUpGestureRecognizer {
-            addMinute()
+            addMinute(failure: failHaptic, completion: completeHaptic)
         } else if sender == swipeDownGestureRecognizer {
-            subtractMinute()
+            subtractMinute(failure: failHaptic, completion: completeHaptic)
         }
     }
     
     @IBAction func upArrowPressed() {
-        addMinute()
+        addMinute(failure: failHaptic, completion: completeHaptic)
     }
     
     @IBAction func downArrowPressed() {
-        subtractMinute()
+        subtractMinute(failure: failHaptic, completion: completeHaptic)
     }
    
     
 
 }
 
-extension TimerInterfaceController {
+extension TimerInterfaceController: TimerManager {
     //MARK: Timer functions
-    func startTimer() {
-        timer = Timer(timeInterval: 1, repeats: true) {_ in
-            self.counter -= 1
-        }
-        
-        guard let timer = timer else { return }
-        RunLoop.current.add(timer, forMode: .commonModes)
-    }
     
-    func stopTimer(_ timer: Timer) {
-        
-        timer.invalidate()
-        self.timer = nil
-    }
-    
+ 
     func counterFinished() {
         counter = counterReference
-        
+        endDate = nil
         
         WKInterfaceController.reloadRootControllers(withNames: ["TimerInterface", "StopwatchInterface"], contexts: [Context(false), Context(true)])
-    }
-    
-    func addMinute() {
-        
-        guard timer == nil else { return }
-        guard counter < 3600 else {
-            playHaptic(.failure)
-            return
-        }
-        
-        playHaptic(.directionUp)
-        if counter % 60 != 0 {
-            counter += 60 - ( counter % 60 )
-        } else {
-            counter += 60
-        }
-        
-    }
-    
-    func subtractMinute() {
-        
-        guard timer == nil else { return }
-        guard counter > 60 else {
-            playHaptic(.failure)
-            return
-        }
-        
-        playHaptic(.directionDown)
-        if counter % 60 != 0 {
-            counter -=  counter % 60
-        } else {
-            counter -= 60
-        }
     }
     
 }
@@ -315,6 +270,14 @@ extension TimerInterfaceController {
     
     func playHaptic(_ type: WKHapticType) {
         WKInterfaceDevice.current().play(type)
+    }
+    
+    func failHaptic() {
+        playHaptic(.failure)
+    }
+    
+    func completeHaptic() {
+        playHaptic(.directionUp)
     }
 }
 

@@ -16,24 +16,30 @@ class TextToSpeech {
     func sayOutLoud(_ text: String) {
         
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.55
+        
         
         synthesizer.speak(utterance)
     }
     
     func sayOutLoud(_ number: Int) {
         var text = ""
-        if number / 60 == 0 {
-            text = "\(number % 60)"
-        } else {
-            if number % 60 == 0 {
-                text = "\(number / 60) \(number / 60 == 1 ? "minute" : "minutes")"
-            } else {
-                text = "\(number / 60) minutes \(number % 60)"
-            }
-            
+        let minutes = number / 60
+        let seconds = number % 60
+        
+        switch minutes {
+        
+        case 1:
+            text += "\(minutes) minute "
+        case 0:
+            text += ""
+        default:
+            text += "\(minutes) minutes"
         }
         
+        text += "\(seconds)"
+       
         sayOutLoud(text)
     }
 }

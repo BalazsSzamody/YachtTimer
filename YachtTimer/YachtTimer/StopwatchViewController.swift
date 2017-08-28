@@ -10,33 +10,39 @@ import UIKit
 
 class StopwatchViewController: UIViewController {
 
-    @IBOutlet weak var hoursLabel: UILabel!
-    @IBOutlet weak var minutesLabel: UILabel!
-    @IBOutlet weak var secondsLabel: UILabel!
-    @IBOutlet weak var fractionSecondsLabel: UILabel!
+    @IBOutlet weak var hour1Label: UILabel!
+    @IBOutlet weak var hour2Label: UILabel!
     @IBOutlet weak var hoursSeparator: UILabel!
+    @IBOutlet weak var minute1Label: UILabel!
+    @IBOutlet weak var minute2Label: UILabel!
     @IBOutlet weak var minutesSeparator: UILabel!
+    @IBOutlet weak var second1Label: UILabel!
+    @IBOutlet weak var second2Label: UILabel!
     @IBOutlet weak var secondsSeparator: UILabel!
+    @IBOutlet weak var fractionSecond1Label: UILabel!
+    @IBOutlet weak var fractionSecond2Label: UILabel!
+    
     @IBOutlet weak var displayStackView: UIStackView!
     
-    @IBOutlet weak var smallHoursLabel: UILabel!
+    @IBOutlet weak var smallHour1Label: UILabel!
+    @IBOutlet weak var smallHour2Label: UILabel!
     @IBOutlet weak var smallHoursSeparator: UILabel!
-    @IBOutlet weak var smallMinutesLabel: UILabel!
+    @IBOutlet weak var smallMinute1Label: UILabel!
+    @IBOutlet weak var smallMinute2Label: UILabel!
     @IBOutlet weak var smallMinutesSeparator: UILabel!
-    @IBOutlet weak var smallSecondsLabel: UILabel!
+    @IBOutlet weak var smallSecond1Label: UILabel!
+    @IBOutlet weak var smallSecond2Label: UILabel!
     @IBOutlet weak var smallSecondsSeparator: UILabel!
-    @IBOutlet weak var smallFractionSeconds: UILabel!
+    @IBOutlet weak var smallFractionSecond1Label: UILabel!
+    @IBOutlet weak var smallFractionSecond2Label: UILabel!
     @IBOutlet weak var smallDisplayStackView: UIStackView!
-    
-    var labels: [UIStackView:[UILabel]]!
-    
-    var labelCollections: [LabelCollection] = []
-    
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
     
     @IBOutlet weak var lapsTableView: UITableView!
+    
+    var labelCollections: [LabelCollection] = []
     
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     
@@ -87,13 +93,18 @@ class StopwatchViewController: UIViewController {
     
     var totalTime: TimeInterval = 0 {
         didSet {
-            updateDisplay(totalTime, for: labelCollections[1])
+            guard totalTime < 86400 else {
+                startDate = startDate?.addingTimeInterval(86400)
+                totalTime = totalTime - 86400
+                return
+            }
+            updateNewDisplay(totalTime, for: labelCollections[1])
         }
     }
     
     var lapTime: TimeInterval = 0 {
         didSet {
-            updateDisplay(lapTime, for: labelCollections[0])
+            updateNewDisplay(lapTime, for: labelCollections[0])
         }
     }
     
@@ -105,52 +116,37 @@ class StopwatchViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // necessary to show correct buttons if coming from timer view
-        /*
-        if stopWatch != nil {
-            startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-            startButton.setTitle("Stop", for: .normal)
-            lapButton.setTitle("Lap", for: .normal)
-        }
-        */
         labelCollections = [LabelCollection(itemMultiplier: 1,
                                             stackView: displayStackView,
-                                            labels: [hoursLabel,
+                                            labels: [hour1Label,
+                                                     hour2Label,
                                                     hoursSeparator,
-                                                    minutesLabel,
+                                                    minute1Label,
+                                                    minute2Label,
                                                     minutesSeparator,
-                                                    secondsLabel,
+                                                    second1Label,
+                                                    second2Label,
                                                     secondsSeparator,
-                                                    fractionSecondsLabel]),
-                            LabelCollection(itemMultiplier: 0.8,
+                                                    fractionSecond1Label,
+                                                    fractionSecond2Label]),
+                            LabelCollection(itemMultiplier: 1,
                                             stackView: smallDisplayStackView,
-                                            labels: [smallHoursLabel,
+                                            labels: [smallHour1Label,
+                                                     smallHour2Label,
                                                      smallHoursSeparator,
-                                                     smallMinutesLabel,
+                                                     smallMinute1Label,
+                                                     smallMinute2Label,
                                                      smallMinutesSeparator,
-                                                     smallSecondsLabel,
+                                                     smallSecond1Label,
+                                                     smallSecond2Label,
                                                      smallSecondsSeparator,
-                                                     smallFractionSeconds])]
-        
-        labels = [displayStackView : [hoursLabel,
-                                      hoursSeparator,
-                                      minutesLabel,
-                                      minutesSeparator,
-                                      secondsLabel,
-                                      secondsSeparator,
-                                      fractionSecondsLabel],
-                  smallDisplayStackView : [smallHoursLabel,
-                                           smallHoursSeparator,
-                                           smallMinutesLabel,
-                                           smallMinutesSeparator,
-                                           smallSecondsLabel,
-                                           smallSecondsSeparator,
-                                           smallFractionSeconds]
-        ]
+                                                     smallFractionSecond1Label,
+                                                     smallFractionSecond2Label])]
         
         
-        updateDisplay(lapTime, for: labelCollections[0])
         
         
+        updateNewDisplay(lapTime, for: labelCollections[0])
         lapsTableView.delegate = self
         lapsTableView.dataSource = self
         
@@ -172,13 +168,13 @@ class StopwatchViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         if let stopWatch = stopWatch {
-            stopStopWatch(stopWatch)
+            stopStopWatch(stopWatch, stoppedByUser: false)
         }
     }
     
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if let stopWatch = stopWatch {
-            stopStopWatch(stopWatch)
+            stopStopWatch(stopWatch, stoppedByUser: true)
         } else {
             startStopWatch(startedByUser: true)
         }
@@ -202,37 +198,13 @@ class StopwatchViewController: UIViewController {
         }
         
     }
+}
+
+extension StopwatchViewController: StopwatchManager {
     
-    func startStopWatch(startedByUser: Bool) {
+    func buttonsForRunning() {
         
-        if startedByUser {
-            if startDate == nil {
-                startDate = Date()
-            } else {
-                startDate = Date().addingTimeInterval(-totalTime)
-            }
-            if lapDate == nil {
-                lapDate = Date()
-            } else {
-                lapDate = Date().addingTimeInterval(-lapTime)
-            }
-        }
-        
-        
-        stopWatch = Timer(timeInterval: 0.09, repeats: true) {_ in
-            self.totalTime = Date().timeIntervalSince(self.startDate!)
-            self.lapTime = Date().timeIntervalSince(self.lapDate!)
-        }
-        
-        guard let stopWatch = stopWatch else { return }
-            RunLoop.current.add(stopWatch, forMode: .commonModes)
     }
-    
-    func stopStopWatch(_ stopWatch: Timer) {
-        stopWatch.invalidate()
-        self.stopWatch = nil
-    }
-    
 }
 
 extension StopwatchViewController: StopwatchTimeDisplay {

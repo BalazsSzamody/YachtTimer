@@ -13,6 +13,7 @@ protocol StopwatchTimeDisplay {
     var labelCollections: [LabelCollection] { get set }
     
     func updateDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection)
+    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection)
 }
 
 extension StopwatchTimeDisplay {
@@ -51,6 +52,50 @@ extension StopwatchTimeDisplay {
         labels[6].text = time.fractionSecondsString
     }
     
+    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection) {
+        let labels = labelCollection.labels
+        let stackView = labelCollection.stackView
+        
+        let time = NewStopwatchTime(time: timeInterval)
+        
+        
+        
+        if let hourSecond = time.hourSecond {
+            labels[0].isHidden = false
+            labels[1].isHidden = false
+            labels[2].isHidden = false
+            
+            labels[0].text = time.hourFirst
+            labels[1].text = hourSecond
+        } else {
+            labels[0].isHidden = true
+            labels[1].isHidden = true
+            labels[2].isHidden = true
+        }
+        
+        if let minuteSecond = time.minuteSecond {
+            labels[3].isHidden = false
+            labels[4].isHidden = false
+            labels[5].isHidden = false
+            
+            labels[3].text = time.minuteFirst
+            labels[4].text = minuteSecond
+        } else {
+            labels[3].isHidden = true
+            labels[4].isHidden = true
+            labels[5].isHidden = true
+        }
+        
+        labels[6].text = time.secondFirst
+        labels[7].text = time.secondSecond
+        
+        labels[9].text = time.fractionSecondFirst
+        labels[10].text = time.fractionSecondSecond
+        
+        let scale = determineNewScale(for: labels, baseMultiplier: labelCollection.itemMultiplier)
+        setStackViewSize(scale, for: stackView)
+    }
+    
     func determineScale(for labels: [UILabel]) -> CGFloat {
         //determine scale based on how many labels are hidden
         var scaleCounter = 0
@@ -66,6 +111,25 @@ extension StopwatchTimeDisplay {
             return 1.66
         default:
             return 1
+        }
+    }
+    
+    func determineNewScale(for labels: [UILabel], baseMultiplier: CGFloat) -> CGFloat {
+        var scaleCounter = 0
+        for label in labels {
+            if label.isHidden {
+                scaleCounter += 1
+            }
+            
+        }
+        
+        switch scaleCounter {
+        case 1 ... 3:
+            return 1.33 * baseMultiplier
+        case 4 ... 6:
+            return 1.66 * baseMultiplier
+        default:
+            return baseMultiplier
         }
     }
     

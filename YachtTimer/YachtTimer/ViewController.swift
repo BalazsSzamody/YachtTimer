@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var closeOverlayLeftButton: UIButton!
     
+    @IBOutlet weak var upArrowButton: UIButton!
+    @IBOutlet weak var downArrowButton: UIButton!
     
     var counterReference: Int = 300
     var timer: Timer? = nil {
@@ -59,7 +61,19 @@ class ViewController: UIViewController {
         }
     }
     
-
+    var endDate: Date? = nil {
+        didSet {
+            if endDate != nil {
+                upArrowButton.isHidden = true
+                downArrowButton.isHidden = true
+            } else {
+                upArrowButton.isHidden = false
+                downArrowButton.isHidden = false
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -68,6 +82,7 @@ class ViewController: UIViewController {
         updateDisplay(counter)
         setLabelColor(green)
         prepareOverlaysAndButtons()
+        
     }
     
 
@@ -81,7 +96,6 @@ class ViewController: UIViewController {
             stopTimer(timer)
         } else {
             startTimer()
-            alert.sayOutLoud(counter)
         }
         
         
@@ -102,16 +116,16 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func swipeUp(_ sender: Any) {
-        if timer == nil {
-            counter += 60
-            
-        }
+        addMinute(failure: nil, completion: nil)
     }
     @IBAction func swipeDown(_ sender: Any) {
-        if timer == nil {
-            counter -= 60
-            
-        }
+        subtractMinute(failure: nil, completion: nil)
+    }
+    @IBAction func upArrowPressed(_ sender: Any) {
+        addMinute(failure: nil, completion: nil)
+    }
+    @IBAction func downArrowPressed(_ sender: Any) {
+        subtractMinute(failure: nil, completion: nil)
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
@@ -131,26 +145,13 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController {
+extension ViewController: TimerManager {
     //MARK: Timer functions
     
-    func startTimer() {
-        timer = Timer(timeInterval: 1, repeats: true) {_ in
-            self.counter -= 1
-        }
-        
-        guard let timer = timer else { return }
-        RunLoop.current.add(timer, forMode: .commonModes)
-    }
-    
-    func stopTimer(_ timer: Timer) {
-        
-        timer.invalidate()
-        self.timer = nil
-    }
     
     func counterFinished() {
         counter = counterReference
+        endDate = nil
         if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
             stopWatchVC.startDate = Date()
             stopWatchVC.lapDate = Date()
@@ -250,7 +251,13 @@ extension ViewController {
 extension ViewController {
     //MARK: Overlay handling
     
+    func prepareControlButtons() {
+        
+    }
+    
     func prepareOverlaysAndButtons() {
+        upArrowButton.tintColor = green
+        downArrowButton.tintColor = green
         overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
         overlayView.isHidden = true
         let helpImage = #imageLiteral(resourceName: "QuestionMark").withRenderingMode(.alwaysTemplate)
