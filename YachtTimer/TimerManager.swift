@@ -21,14 +21,21 @@ protocol TimerManager: class {
     
     func stopTimer(_ timer: Timer)
     
-    func counterFinished()
+    func syncResetTimer(_ timer: Timer?, resetCompletionHandler completion: (() -> Void)?)
+    
+    func counterFinished(_ timer: Timer)
     
     func addMinute(failure: (() -> Void)?, completion: (() -> Void)?)
     
     func subtractMinute(failure: (() -> Void)?, completion: (() -> Void)?)
+    
+    func manageSpeech(_ time: Int)
+    
+    func updateDisplay(_ timeInterval: Int, for collection: LabelCollection?)
 }
 
 extension TimerManager {
+    
     func startTimer() {
         if endDate == nil {
             endDate = Date().addingTimeInterval(TimeInterval(counter))
@@ -47,6 +54,25 @@ extension TimerManager {
         endDate = nil
         timer.invalidate()
         self.timer = nil
+    }
+    
+    func syncResetTimer(_ timer: Timer?, resetCompletionHandler completion: (() -> Void)?) {
+        if let timer = timer {
+            stopTimer(timer)
+            if counter % 60 > 30 {
+                counter += 60 - ( counter % 60 )
+            } else {
+                counter -= counter % 60
+            }
+            startTimer()
+        } else {
+            counter = counterReference
+            if let completion = completion {
+               completion()
+            }
+            
+        }
+        
     }
     
     func addMinute(failure: (() -> Void)?, completion: (() -> Void)?) {

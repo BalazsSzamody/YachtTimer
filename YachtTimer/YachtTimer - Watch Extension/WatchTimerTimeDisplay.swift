@@ -13,12 +13,14 @@ protocol WatchTimerTimeDisplay {
     var collection: WatchLabelCollection? { get set }
     var currentScreenSize: ScreenSize? { get set }
     
-    func updateDisplay(_ timeInterval: Int, for collection: WatchLabelCollection?)
+    func updateDisplay(_ timeInterval: Int, for collection: LabelCollection?)
+    
+    func manageLabelColors(_ time: Int)
 }
 
 extension WatchTimerTimeDisplay {
-    func updateDisplay(_ timeInterval: Int, for collection: WatchLabelCollection?) {
-        guard let collection = collection else { return }
+    func updateDisplay(_ timeInterval: Int, for collection: LabelCollection?) {
+        guard let collection = collection as? WatchLabelCollection else { return }
         let labels = collection.labels
         let time = TimerTime(time: timeInterval)
         let multiplier = determineScale(time, for: collection)
@@ -42,6 +44,8 @@ extension WatchTimerTimeDisplay {
         labels[2].setAttributedText(setText(time.secondsString, for: fontSize))
         labels[2].setWidth(labelWidth)
         labels[2].setHeight(labelHeight)
+        
+        manageLabelColors(timeInterval)
     }
     
     func determineScale(_ time: TimerTime, for collection: WatchLabelCollection) -> CGFloat {

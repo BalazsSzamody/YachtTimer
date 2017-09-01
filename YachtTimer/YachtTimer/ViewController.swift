@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var collection: PhoneLabelCollection? = nil
+    
     let alert = TextToSpeech()
     
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
@@ -52,12 +54,13 @@ class ViewController: UIViewController {
             if counter < 0 {
                 counter = 0
                 return
+            } else if counter == 0, let timer = timer {
+                counterFinished(timer)
             }
             if timer != nil {
                 manageSpeech(counter)
             }
-            manageLabels(counter)
-            updateDisplay(counter)
+            updateDisplay(counter, for: collection)
         }
     }
     
@@ -79,7 +82,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         counter = counterReference
-        updateDisplay(counter)
         setLabelColor(green)
         prepareOverlaysAndButtons()
         
@@ -102,18 +104,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func syncButtonPressed(_ sender: UIButton) {
-        if let timer = timer {
-            stopTimer(timer)
-            if counter % 60 > 30 {
-                counter += 60 - ( counter % 60 )
-            } else {
-                counter -= counter % 60
-            }
-            startTimer()
-        } else {
-            counter = counterReference
-            resetLabels()
-        }
+        syncResetTimer(timer, resetCompletionHandler: resetLabels)
     }
     @IBAction func swipeUp(_ sender: Any) {
         addMinute(failure: nil, completion: nil)
@@ -149,12 +140,13 @@ extension ViewController: TimerManager {
     //MARK: Timer functions
     
     
-    func counterFinished() {
+    func counterFinished(_ timer: Timer) {
+        let date = endDate
+        stopTimer(timer)
         counter = counterReference
-        endDate = nil
         if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
-            stopWatchVC.startDate = Date()
-            stopWatchVC.lapDate = Date()
+            stopWatchVC.startDate = date
+            stopWatchVC.lapDate = date
             self.tabBarController?.selectedViewController = stopWatchVC
         }
         
@@ -164,11 +156,12 @@ extension ViewController: TimerManager {
 extension ViewController {
     //MARK: Label handling functions
     
-    func updateDisplay(_ time: Int) {
+    func updateDisplay(_ time: Int, for collection: LabelCollection?) {
         let minutes = time / 60
         minuteLabel.text = String(format: "%02i", minutes)
         let seconds = time % 60
         secondLabel.text = String(format: "%02i", seconds)
+        manageLabels(time)
     }
     
     func manageLabels(_ time: Int) {
@@ -180,13 +173,6 @@ extension ViewController {
         case 1 ... 59:
             enlargeSeconds()
             setLabelColor(red)
-            
-        case 0:
-            if let timer = timer {
-                stopTimer(timer)
-                counterFinished()
-            }
-            resetLabels()
             
         default:
             setLabelColor(green)

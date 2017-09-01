@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct LabelCollection {
+struct PhoneLabelCollection: LabelCollection {
     let itemMultiplier: CGFloat
     
     let stackView: UIStackView

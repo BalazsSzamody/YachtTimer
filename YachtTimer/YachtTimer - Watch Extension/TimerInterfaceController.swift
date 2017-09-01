@@ -81,14 +81,12 @@ class TimerInterfaceController: WKInterfaceController {
                 counter = 0
                 return
             } else if counter == 0, let timer = timer {
-                stopTimer(timer)
-                counterFinished()
+                counterFinished(timer)
             }
             
             if timer != nil {
                 manageSpeech(counter)
             }
-            manageLabelColors(counter)
             updateDisplay(counter, for: collection)
         }
     }
@@ -138,17 +136,7 @@ class TimerInterfaceController: WKInterfaceController {
     }
     
     @IBAction func syncResetPressed() {
-        if let timer = timer {
-            stopTimer(timer)
-            if counter % 60 > 30 {
-                counter += 60 - ( counter % 60 )
-            } else {
-                counter -= counter % 60
-            }
-            startTimer()
-        } else {
-            counter = counterReference
-        }
+            syncResetTimer(timer, resetCompletionHandler: nil)
     }
     
     @IBAction func swipe(_ sender: Any) {
@@ -178,11 +166,12 @@ extension TimerInterfaceController: TimerManager {
     //MARK: Timer functions
     
  
-    func counterFinished() {
+    func counterFinished(_ timer: Timer) {
+        let date = endDate
+        stopTimer(timer)
         counter = counterReference
-        endDate = nil
         
-        WKInterfaceController.reloadRootControllers(withNames: ["TimerInterface", "StopwatchInterface"], contexts: [Context(false), Context(true)])
+        WKInterfaceController.reloadRootControllers(withNames: ["TimerInterface", "StopwatchInterface"], contexts: [Context(false), Context(date)])
     }
     
 }

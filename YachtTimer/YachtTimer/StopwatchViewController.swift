@@ -42,7 +42,7 @@ class StopwatchViewController: UIViewController {
     
     @IBOutlet weak var lapsTableView: UITableView!
     
-    var labelCollections: [LabelCollection] = []
+    var labelCollections: [PhoneLabelCollection] = []
     
     let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
     
@@ -116,7 +116,7 @@ class StopwatchViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // necessary to show correct buttons if coming from timer view
-        labelCollections = [LabelCollection(itemMultiplier: 1,
+        labelCollections = [PhoneLabelCollection(itemMultiplier: 1,
                                             stackView: displayStackView,
                                             labels: [hour1Label,
                                                      hour2Label,
@@ -129,7 +129,7 @@ class StopwatchViewController: UIViewController {
                                                     secondsSeparator,
                                                     fractionSecond1Label,
                                                     fractionSecond2Label]),
-                            LabelCollection(itemMultiplier: 1,
+                            PhoneLabelCollection(itemMultiplier: 1,
                                             stackView: smallDisplayStackView,
                                             labels: [smallHour1Label,
                                                      smallHour2Label,

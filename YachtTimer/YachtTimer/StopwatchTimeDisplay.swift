@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 protocol StopwatchTimeDisplay {
-    var labelCollections: [LabelCollection] { get set }
+    var labelCollections: [PhoneLabelCollection] { get set }
     
-    func updateDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection)
-    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection)
+    func updateDisplay(_ timeInterval: TimeInterval, for labelCollection: PhoneLabelCollection)
+    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: PhoneLabelCollection)
 }
 
 extension StopwatchTimeDisplay {
-    func updateDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection) {
+    func updateDisplay(_ timeInterval: TimeInterval, for labelCollection: PhoneLabelCollection) {
         let labels = labelCollection.labels
         let stackView = labelCollection.stackView
         
@@ -52,7 +52,7 @@ extension StopwatchTimeDisplay {
         labels[6].text = time.fractionSecondsString
     }
     
-    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: LabelCollection) {
+    func updateNewDisplay(_ timeInterval: TimeInterval, for labelCollection: PhoneLabelCollection) {
         let labels = labelCollection.labels
         let stackView = labelCollection.stackView
         

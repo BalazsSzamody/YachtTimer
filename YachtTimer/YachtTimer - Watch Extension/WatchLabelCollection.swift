@@ -9,7 +9,7 @@
 import Foundation
 import WatchKit
 
-struct WatchLabelCollection {
+struct WatchLabelCollection: LabelCollection {
     var itemMultiplier: CGFloat
     
     var labels: [WKInterfaceLabel]
