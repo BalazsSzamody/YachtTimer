@@ -9,14 +9,14 @@
 import Foundation
 import WatchKit
 
-enum ScreenSize {
+enum WatchScreenSize {
     case small
     case big
 }
 
 protocol WatchStopwatchTimeDisplay {
     var collections: [WatchLabelCollection]? { get set }
-    var currentScreenSize: ScreenSize? { get set }
+    var currentScreenSize: WatchScreenSize? { get set }
     
     
     func updateDisplay(_ timeInterval: TimeInterval, for collection: WatchLabelCollection)
@@ -30,8 +30,8 @@ extension WatchStopwatchTimeDisplay {
         let multiplier = determineScale(time, for: collection)
         let mainFontSize = 27 * multiplier
         let subFontSize = 23 * multiplier
-        let mainLabelWidth = 33 * multiplier
-        let subLabelWidth = 27 * multiplier
+        let mainLabelWidth = 32 * multiplier
+        let subLabelWidth = 28 * multiplier
         let subLabelHeight = 31 * multiplier
         
         

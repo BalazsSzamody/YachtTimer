@@ -28,6 +28,8 @@ class StopWatchTableViewCell: UITableViewCell {
     @IBOutlet weak var totalSecondLabel: UILabel!
     @IBOutlet weak var totalFractionSecondLabel: UILabel!
     
+    @IBOutlet weak var totalLabel: UILabel!
+    
     var displayLap: [UILabel]?
     var displayTotal: [UILabel]?
     
@@ -57,7 +59,7 @@ class StopWatchTableViewCell: UITableViewCell {
         displayLap = [ lapHourLabel, lapHourSeparator, lapMinuteLabel, lapMinuteSeparator, lapSecondLabel, lapFractionSecondLabel, lapNameLabel]
         displayTotal = [ totalHourLabel, totalHourSeparator, totalMinuteLabel, totalMinuteSeparator, totalSecondLabel, totalFractionSecondLabel]
         
-        
+        setLabelColors(in: [displayLap, displayTotal, [totalLabel]])
         
     }
 
@@ -98,4 +100,13 @@ extension StopWatchTableViewCell {
         }
     }
     
+    func setLabelColors(in collections: [[UILabel]?]) {
+        for collection in collections {
+            guard let collection = collection else { return }
+            for label in collection {
+                label.textColor = InterfaceColor.offWhite
+            }
+        }
+        
+    }
 }

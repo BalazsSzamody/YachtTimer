@@ -8,8 +8,7 @@
 
 import WatchKit
 import Foundation
-
-
+import HealthKit
 
 class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var minutesLabel: WKInterfaceLabel!
@@ -28,7 +27,7 @@ class TimerInterfaceController: WKInterfaceController {
     
     var collection: WatchLabelCollection? = nil
     
-    var currentScreenSize: ScreenSize? = nil
+    var currentScreenSize: WatchScreenSize? = nil
     
     var counterReference: Int = 300
     
@@ -36,12 +35,18 @@ class TimerInterfaceController: WKInterfaceController {
     
     var context: Any? = nil
     
+    // Background Haptic requiremnts
+    
+    let healthStore = HKHealthStore()
+    
+    var workoutSession: HKWorkoutSession?
+    
     // Used Colors
-    let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
-    let yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
-    let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
-    let offWhite = UIColor(red: 197/255, green: 226/255, blue: 196/255, alpha: 1)
-    var currentLabelColor: UIColor!
+    let green = InterfaceColor.brightGreen
+    let yellow = InterfaceColor.brightYellow
+    let red = InterfaceColor.brightRed
+    let white = InterfaceColor.white
+    let blue = InterfaceColor.lightBlue
     
     //Button image definitions in extension
     var startIcon: ButtonImage!
@@ -65,12 +70,12 @@ class TimerInterfaceController: WKInterfaceController {
         didSet {
             if timer == nil {
                 //Handle Timer not running stuff
-                buttonsForStopped()
-                
+                switchToStartButtons()
+                stopWorkout()
             } else {
                 //Handle Timer is running stuff
-                buttonsForRunning()
-                
+                switchToRunningButtons()
+                startWorkout()
             }
         }
     }
@@ -108,7 +113,7 @@ class TimerInterfaceController: WKInterfaceController {
         counter = counterReference
         self.context = context
         prepareButtonImages()
-        buttonsForStopped()
+        switchToStartButtons()
         crownSequencer.delegate = self
         
     }
@@ -167,7 +172,12 @@ extension TimerInterfaceController: TimerManager {
     
  
     func counterFinished(_ timer: Timer) {
-        let date = endDate
+        let date: Date
+        if let endDate = endDate {
+            date = endDate
+        } else {
+            date = Date()
+        }
         stopTimer(timer)
         counter = counterReference
         
@@ -190,18 +200,15 @@ extension TimerInterfaceController: WatchTimerTimeDisplay {
        
             
         default:
-            setLabelColor(green)
+            setLabelColor(white)
             
         }
     }
     
     func setLabelColor(_ color: UIColor) {
-        if currentLabelColor != color {
             minutesLabel.setTextColor(color)
             separatorLabel.setTextColor(color)
             secondsLabel.setTextColor(color)
-            currentLabelColor = color
-        }
     }
 }
 
@@ -212,17 +219,17 @@ extension TimerInterfaceController {
         startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
         pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
         resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
-        syncIcon = ButtonImage(image: #imageLiteral(resourceName: "syncIcon"), color: offWhite)
+        syncIcon = ButtonImage(image: #imageLiteral(resourceName: "syncIcon"), color: white)
     }
     
-    func buttonsForStopped() {
+    func switchToStartButtons() {
         startStopButtonImage.setImageAndColor(startIcon)
         syncResetButtonImage.setImageAndColor(resetIcon)
         upArrowImage.setHidden(false)
         downArrowImage.setHidden(false)
     }
     
-    func buttonsForRunning() {
+    func switchToRunningButtons() {
         startStopButtonImage.setImageAndColor(pauseIcon)
         syncResetButtonImage.setImageAndColor(syncIcon)
         upArrowImage.setHidden(true)
@@ -281,3 +288,39 @@ extension TimerInterfaceController: WKCrownDelegate {
     }
 }
 
+extension TimerInterfaceController {
+    func startWorkout() {
+        let workoutConfiguration = HKWorkoutConfiguration()
+        workoutConfiguration.activityType = .other
+        
+        do {
+            workoutSession = try HKWorkoutSession(configuration: workoutConfiguration)
+            print("WorkoutStarted")
+            workoutSession?.delegate = self
+            healthStore.start(workoutSession!)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func stopWorkout() {
+        guard let workoutSession = workoutSession else { return }
+        healthStore.end(workoutSession)
+        self.workoutSession = nil
+    }
+}
+
+extension TimerInterfaceController: HKWorkoutSessionDelegate {
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        
+    }
+    
+}

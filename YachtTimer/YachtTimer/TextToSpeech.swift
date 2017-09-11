@@ -38,7 +38,7 @@ class TextToSpeech {
             text += "\(minutes) minutes"
         }
         
-        text += "\(seconds)"
+        text += "\(seconds > 0 ? "\(seconds)" : "")"
        
         sayOutLoud(text)
     }

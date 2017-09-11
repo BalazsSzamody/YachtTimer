@@ -24,7 +24,7 @@
                                                     <group key="contentGroup" width="1" height="1" alignment="left" id="gpc-Fc-nOF">
                                                         <items>
                                                             <imageView height="12" alignment="center" verticalAlignment="center" image="upArrows" id="K7Q-Hp-Bqy">
-                                                                <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </imageView>
                                                         </items>
                                                     </group>
@@ -37,16 +37,19 @@
                                         <group width="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFill" id="u8E-QV-bpZ">
                                             <items>
                                                 <label width="71" height="46" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="m1H-WA-51N">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="63"/>
                                                     <variation key="device=watch38mm" height="40" width="62">
                                                         <fontDescription key="font" type="system" pointSize="55"/>
                                                     </variation>
                                                 </label>
                                                 <label height="46" alignment="center" verticalAlignment="center" text=":" textAlignment="center" baselineAdjustment="alignCenters" id="nZH-QB-EFj">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="30"/>
                                                     <variation key="device=watch38mm" height="40"/>
                                                 </label>
                                                 <label width="71" height="46" alignment="center" verticalAlignment="center" text="55" textAlignment="center" baselineAdjustment="alignCenters" id="zYX-If-yw2">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="63"/>
                                                     <variation key="device=watch38mm" height="40" width="62">
                                                         <fontDescription key="font" type="system" pointSize="55"/>
@@ -60,7 +63,7 @@
                                                     <group key="contentGroup" width="1" height="1" alignment="left" id="EDu-qq-NjL">
                                                         <items>
                                                             <imageView height="12" alignment="center" verticalAlignment="center" image="downArrows" id="yvX-jh-Cvd">
-                                                                <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </imageView>
                                                         </items>
                                                     </group>
@@ -91,7 +94,7 @@
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="Zgm-mp-QhL">
                                                 <items>
                                                     <imageView width="40" height="40" alignment="center" verticalAlignment="center" image="startIcon" contentMode="scaleAspectFit" id="ujI-QE-J1W">
-                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
                                                 <variation key="device=watch38mm" height="40"/>
@@ -104,7 +107,7 @@
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="vZP-Dx-8dO">
                                                 <items>
                                                     <imageView width="40" height="40" alignment="left" image="closeIcon" id="flQ-D0-iiF">
-                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
                                                 <variation key="device=watch38mm" height="40"/>
@@ -150,42 +153,49 @@
                                         <group width="1" alignment="center" verticalAlignment="center" id="dXH-np-cj6">
                                             <items>
                                                 <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="afV-WG-N62">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm" width="20">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label alignment="center" verticalAlignment="center" text=":" id="66Q-aN-DZw">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="NDK-gF-2cf">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm" width="20">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label alignment="center" verticalAlignment="center" text=":" id="UTY-ty-XxR">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="K6H-Mj-8f1">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm" width="20">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label alignment="center" verticalAlignment="center" text="." id="hF8-Tq-Lbv">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="20"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                     </variation>
                                                 </label>
                                                 <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="uag-RV-6is">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="16"/>
                                                     <variation key="device=watch38mm" height="19" width="17">
                                                         <fontDescription key="font" type="system" pointSize="13"/>
@@ -196,47 +206,54 @@
                                     </items>
                                     <variation key="device=watch38mm" height="35"/>
                                 </group>
-                                <group width="1" height="60" alignment="left" id="Eb3-4E-8gR">
+                                <group width="1" height="60" alignment="center" verticalAlignment="center" id="Eb3-4E-8gR">
                                     <items>
                                         <group width="1" alignment="center" verticalAlignment="center" id="XZU-r9-hPN">
                                             <items>
                                                 <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="Jx3-MM-P1X">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm" width="27">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label height="1" alignment="center" verticalAlignment="center" text=":" id="S14-cx-fNd">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="DVt-7Q-s7f">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm" width="27">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label height="1" alignment="center" verticalAlignment="center" text=":" id="sfK-oa-1bd">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label width="31" height="1" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="v39-Be-VS3">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm" width="27">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label alignment="center" verticalAlignment="center" text="." id="gJb-IZ-bTI">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="27"/>
                                                     <variation key="device=watch38mm">
                                                         <fontDescription key="font" type="system" pointSize="23"/>
                                                     </variation>
                                                 </label>
                                                 <label width="27" height="31" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="9c1-tu-c2Y">
+                                                    <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="font" type="system" pointSize="23"/>
                                                     <variation key="device=watch38mm" height="23" width="22">
                                                         <fontDescription key="font" type="system" pointSize="18"/>
@@ -253,7 +270,7 @@
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="hiy-u5-6wI">
                                                 <items>
                                                     <imageView width="40" height="40" alignment="left" image="startIcon" id="WKi-pn-ru0">
-                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
                                             </group>
@@ -265,7 +282,7 @@
                                             <group key="contentGroup" width="40" height="40" alignment="left" id="sxl-lV-5Rb">
                                                 <items>
                                                     <imageView width="40" height="40" alignment="left" image="closeIcon" id="8Ul-hu-HbX">
-                                                        <color key="tintColor" red="0.7725490196" green="0.8862745098" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </imageView>
                                                 </items>
                                             </group>
@@ -284,46 +301,55 @@
                                                 <items>
                                                     <group width="1" alignment="left" layout="vertical" spacing="0.0" id="xZH-pS-6zw">
                                                         <items>
-                                                            <label alignment="left" text="Lap" id="RHy-k7-ftB"/>
+                                                            <label alignment="left" text="Lap" id="RHy-k7-ftB">
+                                                                <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </label>
                                                             <group width="1" alignment="right" id="PgU-yl-xtP">
                                                                 <items>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="pLz-Hm-Py4">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text=":" id="i79-bR-Wed">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="24a-kt-gYo">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text=":" id="DKz-vp-Dmr">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="126-Bh-aAi">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text="." id="uxB-ii-nVa">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="gOt-nM-Vq9">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                                         <variation key="device=watch38mm" height="19" width="17">
                                                                             <fontDescription key="font" type="system" pointSize="13"/>
@@ -335,50 +361,59 @@
                                                         </items>
                                                     </group>
                                                     <group width="1" widthAdjustment="-60" height="2" alignment="center" id="0ot-Fq-Nwf">
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </group>
                                                     <group width="1" alignment="left" layout="vertical" spacing="0.0" id="Zs1-OT-Poi">
                                                         <items>
-                                                            <label alignment="left" text="Total:" id="eIy-kf-2pG"/>
+                                                            <label alignment="left" text="Total:" id="eIy-kf-2pG">
+                                                                <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </label>
                                                             <group width="1" alignment="right" id="IVW-F4-Ops">
                                                                 <items>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="xfE-Z5-7RX">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text=":" id="Gu6-IW-n7Q">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="GkE-he-E3K">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text=":" id="N0J-su-Iwq">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="24" alignment="center" verticalAlignment="center" text="55" textAlignment="center" id="O9x-fJ-skJ">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm" width="20">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label alignment="center" verticalAlignment="center" text="." id="gUA-le-hUg">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="20"/>
                                                                         <variation key="device=watch38mm">
                                                                             <fontDescription key="font" type="system" pointSize="16"/>
                                                                         </variation>
                                                                     </label>
                                                                     <label width="20" height="21" alignment="center" verticalAlignment="bottom" text="55" textAlignment="center" id="gUh-UB-ZEb">
+                                                                        <color key="textColor" red="0.1333333333" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="font" type="system" pointSize="16"/>
                                                                         <variation key="device=watch38mm" height="19" width="17">
                                                                             <fontDescription key="font" type="system" pointSize="13"/>

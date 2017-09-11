@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "resetIcon.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "XMark.pdf",
       "scale" : "2x"
     },
     {

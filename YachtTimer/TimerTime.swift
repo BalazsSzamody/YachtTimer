@@ -27,3 +27,25 @@ struct TimerTime {
     
     
 }
+
+struct NewTimerTime {
+    let time: Int
+    
+    var minute1: String? {
+        let minutes = time / 60
+        return minutes > 0 ? "\(minutes / 10)" : nil
+    }
+    
+    var minute2: String? {
+        let minutes = time / 60
+        return minutes > 0 ? "\(minutes % 10)" : nil
+    }
+    
+    var second1: String {
+        return "\(( time % 60 ) / 10)"
+    }
+    
+    var second2: String {
+        return "\((time % 60) % 10)"
+    }
+}

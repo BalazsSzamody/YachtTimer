@@ -35,7 +35,7 @@ class StopwatchInterfaceController: WKInterfaceController {
     
     @IBOutlet var lapTable: WKInterfaceTable!
     
-    var currentScreenSize: ScreenSize? = nil
+    var currentScreenSize: WatchScreenSize? = nil
     
     var collections: [WatchLabelCollection]? = nil
     
@@ -44,16 +44,17 @@ class StopwatchInterfaceController: WKInterfaceController {
     var resetIcon: ButtonImage!
     var lapIcon: ButtonImage!
     
-    let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
-    let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
-    let offWhite = UIColor(red: 197/255, green: 226/255, blue: 196/255, alpha: 1)
+    let green = InterfaceColor.brightGreen
+    let red = InterfaceColor.brightRed
+    let blue = InterfaceColor.lightBlue
+    let white = InterfaceColor.white
     
     var stopWatch: Timer? = nil {
         didSet {
             if stopWatch == nil {
-                buttonsForStopped()
+                switchToStartButtons()
             } else {
-                buttonsForRunning()
+                switchToRunningButtons()
             }
         }
     }
@@ -109,7 +110,7 @@ class StopwatchInterfaceController: WKInterfaceController {
         
         self.context = context
         prepareButtonImages()
-        buttonsForStopped()
+        switchToStartButtons()
         startStopButtonImage.setTintColor(green)
         lapTable.setHidden(true)
         smallDisplayGroup.setHidden(true)
@@ -126,7 +127,6 @@ class StopwatchInterfaceController: WKInterfaceController {
         if stopWatch == nil && startDate != nil {
             startStopWatch(startedByUser: false)
         }
-        
     }
     
     override func didDeactivate() {
@@ -188,15 +188,15 @@ extension StopwatchInterfaceController {
         startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
         pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
         resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
-        lapIcon = ButtonImage(image: #imageLiteral(resourceName: "resetIcon"), color: offWhite)
+        lapIcon = ButtonImage(image: #imageLiteral(resourceName: "resetIcon"), color: white)
     }
     
-    func buttonsForStopped() {
+    func switchToStartButtons() {
         startStopButtonImage.setImageAndColor(startIcon)
         lapResetButtonImage.setImageAndColor(resetIcon)
     }
     
-    func buttonsForRunning() {
+    func switchToRunningButtons() {
         startStopButtonImage.setImageAndColor(pauseIcon)
         lapResetButtonImage.setImageAndColor(lapIcon)
     }

@@ -12,42 +12,47 @@ class ViewController: UIViewController {
     @IBOutlet weak var minuteLabel: UILabel!
     @IBOutlet weak var separatorLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
+    //@IBOutlet weak var secondLabelWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var timerStackView: UIStackView!
+    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var syncButton: UIButton!
+    
+    var buttonGroup: [UIButton] = []
     
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var overlayImage: UIImageView!
     @IBOutlet weak var closeOverlayLeftButton: UIButton!
     
     @IBOutlet weak var upArrowButton: UIButton!
     @IBOutlet weak var downArrowButton: UIButton!
+    @IBOutlet weak var phoneBackgroundImage: UIImageView!
     
     var counterReference: Int = 300
     var timer: Timer? = nil {
         didSet {
             if timer == nil {
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
-                startButton.setTitle("Start", for: .normal)
-                syncButton.setTitle("Reset", for: .normal)
+                switchToStartButtons()
                 UIApplication.shared.isIdleTimerDisabled = true
             } else {
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-                startButton.setTitle("Stop", for: .normal)
-                syncButton.setTitle("Sync", for: .normal)
+                switchToRunningButtons()
                 UIApplication.shared.isIdleTimerDisabled = false
             }
         }
     }
     
-    var collection: PhoneLabelCollection? = nil
-    
     let alert = TextToSpeech()
     
-    let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
-    let yellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
-    let red = UIColor(red: 223/255, green: 114/255, blue: 109/255, alpha: 1)
-    var currentLabelColor: UIColor!
+    let green = InterfaceColor.brightGreen
+    let yellow = InterfaceColor.brightYellow
+    let red = InterfaceColor.brightRed
+    let blue = InterfaceColor.blue
+    let lightBlue = InterfaceColor.lightBlue
+    let white = InterfaceColor.white
+    let transparent = InterfaceColor.transparent
     
     var counter: Int = 65 {
         didSet {
@@ -60,31 +65,24 @@ class ViewController: UIViewController {
             if timer != nil {
                 manageSpeech(counter)
             }
-            updateDisplay(counter, for: collection)
+            updateDisplay(counter)
         }
     }
     
-    var endDate: Date? = nil {
-        didSet {
-            if endDate != nil {
-                upArrowButton.isHidden = true
-                downArrowButton.isHidden = true
-            } else {
-                upArrowButton.isHidden = false
-                downArrowButton.isHidden = false
-            }
-        }
-    }
+    var endDate: Date? = nil
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         counter = counterReference
-        setLabelColor(green)
+        setLabelColor(white)
+        switchToStartButtons()
         prepareOverlaysAndButtons()
-        
     }
     
 
@@ -120,13 +118,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        overlayView.isHidden = false
-        helpButton.isHidden = true
+        showHelpOverlay()
     }
     
     @IBAction func closeOverlayLeftButtonPressed(_ sender: Any) {
-        overlayView.isHidden = true
-        helpButton.isHidden = false
+        hideHelpOverlay()
     }
     
     @IBAction func settingsButtonPressed(_ sender: Any) {
@@ -141,7 +137,12 @@ extension ViewController: TimerManager {
     
     
     func counterFinished(_ timer: Timer) {
-        let date = endDate
+        let date: Date
+        if let endDate = endDate {
+            date = endDate
+        } else {
+            date = Date()
+        }
         stopTimer(timer)
         counter = counterReference
         if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
@@ -156,58 +157,63 @@ extension ViewController: TimerManager {
 extension ViewController {
     //MARK: Label handling functions
     
-    func updateDisplay(_ time: Int, for collection: LabelCollection?) {
-        let minutes = time / 60
-        minuteLabel.text = String(format: "%02i", minutes)
-        let seconds = time % 60
-        secondLabel.text = String(format: "%02i", seconds)
-        manageLabels(time)
+    
+    
+    func updateDisplay(_ counter: Int) {
+        let time = TimerTime(time: counter)
+        
+        if let minute = time.minutesString{
+            minuteLabel.text = minute
+            resetLabels()
+        } else {
+            enlargeSeconds()
+        }
+        
+        secondLabel.text = time.secondsString
+        
+        manageLabels(counter)
     }
     
     func manageLabels(_ time: Int) {
         switch time{
         case 60 ... 119:
             setLabelColor(yellow)
-            resetLabels()
             
         case 1 ... 59:
-            enlargeSeconds()
             setLabelColor(red)
-            
+        
         default:
-            setLabelColor(green)
-            resetLabels()
+            setLabelColor(white)
             
         }
     }
     
     func resetLabels() {
-        if minuteLabel.isHidden {
-            minuteLabel.isHidden = false
-        }
+        minuteLabel.isHidden = false
+        separatorLabel.isHidden = false
         
-        if separatorLabel.isHidden {
-            separatorLabel.isHidden = false
-        }
-        secondLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+        //secondLabelWidth.constant = 97.5
+        
+        timerStackView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        
     }
     
     func enlargeSeconds() {
         
         minuteLabel.isHidden = true
         separatorLabel.isHidden = true
-        secondLabel.transform = CGAffineTransform(scaleX: 1.66, y: 1.66)
+        
+        //secondLabelWidth.constant = 97.5 * 4
+        
+        timerStackView.transform = CGAffineTransform(scaleX: 1.66, y: 1.66)
     }
     
     
     
     func setLabelColor(_ color: UIColor) {
-        if currentLabelColor != color {
-            minuteLabel.textColor = color
-            separatorLabel.textColor = color
-            secondLabel.textColor = color
-            currentLabelColor = color
-        }
+        minuteLabel.textColor = color
+        separatorLabel.textColor = color
+        secondLabel.textColor = color
     }
     
 }
@@ -235,22 +241,52 @@ extension ViewController {
 }
 
 extension ViewController {
+    //MARK: Control button handling
+    
+    func switchToStartButtons() {
+        //setUpButton in UIButtonExtension
+        startButton.setUpButton(image: #imageLiteral(resourceName: "startIcon"), color: green)
+        syncButton.setUpButton(image: #imageLiteral(resourceName: "closeIcon"), color: red)
+        upArrowButton.setUpButton(image: #imageLiteral(resourceName: "upArrows"), color: white)
+        downArrowButton.setUpButton(image: #imageLiteral(resourceName: "downArrows"), color: white)
+        upArrowButton.isHidden = false
+        downArrowButton.isHidden = false
+        }
+    
+    func switchToRunningButtons() {
+        startButton.setUpButton(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
+        syncButton.setUpButton(image: #imageLiteral(resourceName: "syncIcon"), color: green)
+        upArrowButton.isHidden = true
+        downArrowButton.isHidden = true
+    }
+}
+
+extension ViewController: HelpOverlayProtocol {
     //MARK: Overlay handling
     
-    func prepareControlButtons() {
+    func prepareOverlaysAndButtons() {
+        buttonGroup = [startButton, syncButton, helpButton]
+        helpButton.setUpButton(image: #imageLiteral(resourceName: "QuestionMark"), color: blue)
+        overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
+        overlayView.isHidden = true
+        settingsButton.isHidden = true
+    }
+    
+    func prepareOverlayImage(isOrientationLandscape: Bool) {
+        if isOrientationLandscape {
+            overlayImage.image = HelpImageSet.landscapeSet?.timerImage
+        } else {
+            overlayImage.image = HelpImageSet.portraitSet?.timerImage
+        }
         
     }
     
-    func prepareOverlaysAndButtons() {
-        upArrowButton.tintColor = green
-        downArrowButton.tintColor = green
-        overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
-        overlayView.isHidden = true
-        let helpImage = #imageLiteral(resourceName: "QuestionMark").withRenderingMode(.alwaysTemplate)
-        helpButton.setImage(helpImage, for: .normal)
-        let settingsImage = #imageLiteral(resourceName: "Cogwheel").withRenderingMode(.alwaysTemplate)
-        settingsButton.setImage(settingsImage, for: .normal)
-        let closeOverlayImage = #imageLiteral(resourceName: "XMark").withRenderingMode(.alwaysTemplate)
-        closeOverlayLeftButton.setImage(closeOverlayImage, for: .normal)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard isViewLoaded else { return }
+        if !overlayView.isHidden {
+            prepareOverlayImage(isOrientationLandscape: PhoneScreen.currentScreen.orientation)
+        }
+        
     }
 }

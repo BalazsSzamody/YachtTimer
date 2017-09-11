@@ -30,8 +30,6 @@ protocol TimerManager: class {
     func subtractMinute(failure: (() -> Void)?, completion: (() -> Void)?)
     
     func manageSpeech(_ time: Int)
-    
-    func updateDisplay(_ timeInterval: Int, for collection: LabelCollection?)
 }
 
 extension TimerManager {
@@ -63,6 +61,10 @@ extension TimerManager {
                 counter += 60 - ( counter % 60 )
             } else {
                 counter -= counter % 60
+            }
+            guard counter != 0 else {
+                counterFinished(timer)
+                return
             }
             startTimer()
         } else {

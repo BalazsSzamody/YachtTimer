@@ -11,7 +11,7 @@ import WatchKit
 
 protocol WatchTimerTimeDisplay {
     var collection: WatchLabelCollection? { get set }
-    var currentScreenSize: ScreenSize? { get set }
+    var currentScreenSize: WatchScreenSize? { get set }
     
     func updateDisplay(_ timeInterval: Int, for collection: LabelCollection?)
     

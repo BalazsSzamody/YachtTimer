@@ -42,9 +42,21 @@ class StopwatchViewController: UIViewController {
     
     @IBOutlet weak var lapsTableView: UITableView!
     
+    var buttonGroup: [UIButton] = []
+    
+    @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var overlayImage: UIImageView!
+    @IBOutlet weak var closeOverlayLeftButton: UIButton!
+    
     var labelCollections: [PhoneLabelCollection] = []
     
-    let green = UIColor(red: 106/255, green: 242/255, blue: 84/255, alpha: 1)
+    let green = InterfaceColor.brightGreen
+    let blue = InterfaceColor.blue
+    let lightBlue = InterfaceColor.lightBlue
+    let white = InterfaceColor.white
+    let red = InterfaceColor.brightRed
     
     var isFirstLap = true {
         didSet {
@@ -59,18 +71,9 @@ class StopwatchViewController: UIViewController {
     var stopWatch: Timer? = nil {
         didSet {
             if stopWatch == nil {
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "startButton"), for: .normal)
-                startButton.setTitle("Start", for: .normal)
-                lapButton.setTitle("Reset", for: .normal)
-                
+                switchToStartButtons()
             } else {
-                // necessary for not getting optional crash after coming from timer view without opening Stopwatch screen first
-                //guard let startButton = startButton else { return }
-                //guard let lapButton = lapButton else { return }
-                
-                startButton.setBackgroundImage(#imageLiteral(resourceName: "stopButton"), for: .normal)
-                startButton.setTitle("Stop", for: .normal)
-                lapButton.setTitle("Lap", for: .normal)
+                switchToRunningButtons()
             }
         }
     }
@@ -108,7 +111,9 @@ class StopwatchViewController: UIViewController {
         }
     }
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,6 +158,9 @@ class StopwatchViewController: UIViewController {
         lapsTableView.separatorStyle = .none
         
         smallDisplayStackView.isHidden = true
+        switchToStartButtons()
+        setLabelColors()
+        prepareOverlaysAndButtons()
         
     }
     
@@ -198,12 +206,35 @@ class StopwatchViewController: UIViewController {
         }
         
     }
+    
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        showHelpOverlay()
+    }
+    
+    @IBAction func closeOverlayLeftButtonPressed(_ sender: Any) {
+        hideHelpOverlay()
+    }
 }
 
 extension StopwatchViewController: StopwatchManager {
     
-    func buttonsForRunning() {
-        
+    func switchToStartButtons() {
+        //setUpButton in UIButtonExtension
+        startButton.setUpButton(image: #imageLiteral(resourceName: "startIcon"), color: green)
+        lapButton.setUpButton(image: #imageLiteral(resourceName: "closeIcon"), color: red)
+    }
+    
+    func switchToRunningButtons() {
+        startButton.setUpButton(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
+        lapButton.setUpButton(image: #imageLiteral(resourceName: "resetIcon"), color: green)
+    }
+    
+    func setLabelColors() {
+        for collection in labelCollections {
+            for label in collection.labels {
+                label.textColor = white
+            }
+        }
     }
 }
 
@@ -233,5 +264,40 @@ extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor(white: 1, alpha: 0)
         
         return cell
+    }
+}
+
+extension StopwatchViewController: HelpOverlayProtocol {
+    //MARK: Overlay handling
+    
+    func prepareOverlaysAndButtons() {
+        buttonGroup = [startButton, lapButton, helpButton]
+        helpButton.setUpButton(image: #imageLiteral(resourceName: "QuestionMark"), color: blue)
+        overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
+        overlayView.isHidden = true
+        settingsButton.isHidden = true
+    }
+    
+    func prepareOverlayImage(isOrientationLandscape: Bool) {
+        let orientationSet: HelpImageSet?
+        if isOrientationLandscape {
+            orientationSet = HelpImageSet.landscapeSet
+        } else {
+            orientationSet = HelpImageSet.portraitSet
+        }
+        if lapDate != startDate {
+            overlayImage.image = orientationSet?.lappedStopwatchImage
+        } else {
+            overlayImage.image = orientationSet?.simpleStopwatchImage
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard isViewLoaded else { return }
+        if !overlayView.isHidden {
+            prepareOverlayImage(isOrientationLandscape: PhoneScreen.currentScreen.orientation)
+        }
+        
     }
 }

@@ -17,7 +17,8 @@ protocol StopwatchManager: class {
     
     func startStopWatch(startedByUser: Bool)
     func stopStopWatch(_ stopWatch: Timer, stoppedByUser: Bool)
-    func buttonsForRunning()
+    func switchToRunningButtons()
+    func switchToStartButtons()
 }
 
 extension StopwatchManager {
@@ -49,7 +50,7 @@ extension StopwatchManager {
         stopWatch.invalidate()
         self.stopWatch = nil
         if !stoppedByUser {
-            buttonsForRunning()
+            switchToRunningButtons()
         }
     }
 }

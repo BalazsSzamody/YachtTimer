@@ -31,7 +31,7 @@ class LapTableRow: NSObject, WatchStopwatchTimeDisplay {
     
     var collections: [WatchLabelCollection]? = nil
     
-    var currentScreenSize: ScreenSize? = nil
+    var currentScreenSize: WatchScreenSize? = nil
     
     var lapTime: LapTime? {
         didSet {
