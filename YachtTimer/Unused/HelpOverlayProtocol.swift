@@ -16,6 +16,8 @@ protocol HelpOverlayProtocol {
     weak var overlayImage: UIImageView! { get set }
     weak var closeOverlayLeftButton: UIButton! { get set }
     
+    var overlayElements: [OverlayElement] { get set }
+    
     func helpButtonPressed(_ sender: Any)
     func closeOverlayLeftButtonPressed(_ sender: Any)
     func prepareOverlaysAndButtons()
@@ -25,16 +27,24 @@ protocol HelpOverlayProtocol {
 extension HelpOverlayProtocol {
     func showHelpOverlay() {
         prepareOverlayImage(isOrientationLandscape: PhoneScreen.currentScreen.orientation)
-        //setControlButtonsHidden(true)
-        setControlButtonsColor(transparent: true)
         overlayView.isHidden = false
      }
     
-    func hideHelpOverlay() {
-        //setControlButtonsHidden(false)
-        setControlButtonsColor(transparent: false)
+    func hideHelpOverlay(completion: () -> Void) {
         overlayView.isHidden = true
+        for element in overlayElements {
+            element.remove()
+        }
+        completion()
     }
+    
+    func setOverlayBackground() {
+        let backgroundImageView = UIImageView()
+        backgroundImageView.frame = overlayView.frame
+        backgroundImageView.image = #imageLiteral(resourceName: "PhoneBackground")
+        overlayView.insertSubview(backgroundImageView, at: 0)
+    }
+    
     
     func setControlButtonsHidden(_ bool: Bool) {
         for button in buttonGroup {
@@ -44,6 +54,9 @@ extension HelpOverlayProtocol {
         }
         helpButton.isHidden = bool
     }
+    
+    
+ 
     
     func setControlButtonsColor(transparent bool: Bool) {
         for button in buttonGroup {
@@ -68,6 +81,4 @@ extension HelpOverlayProtocol {
             }
         }
     }
-    
-    
 }

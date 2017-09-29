@@ -88,6 +88,6 @@ extension WatchStopwatchTimeDisplay {
     }
     
     func setText(_ inputString: String, for size: CGFloat) -> NSAttributedString {
-        return NSAttributedString(string: inputString, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: size, weight: UIFontWeightRegular)])
+        return NSAttributedString(string: inputString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)])
     }
 }

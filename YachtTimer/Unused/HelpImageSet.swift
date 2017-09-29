@@ -21,7 +21,14 @@ struct HelpImageSet: CustomStringConvertible {
     static var portraitSet: HelpImageSet?
     static var landscapeSet: HelpImageSet?
     
+    static let finishedSizes: [DeviceSize] = [.iphoneSE]
+    
     static func createImageSet(deviceSize: DeviceSize) {
+        guard finishedSizes.contains(deviceSize) else {
+            portraitSet = nil
+            landscapeSet = nil
+            return
+        }
         let timerImage = UIImage(imageLiteralResourceName: "helpOverlay_P_Timer_\(deviceSize)")
         let simpleStopwatchImage = UIImage(imageLiteralResourceName: "helpOverlay_P_Stopwatch_\(deviceSize)")
         let lappedStopwatchImage = UIImage(imageLiteralResourceName: "helpOverlay_P_Stopwatch_Lap_\(deviceSize)")

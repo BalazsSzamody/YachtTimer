@@ -219,7 +219,7 @@ extension TimerInterfaceController {
         startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
         pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
         resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
-        syncIcon = ButtonImage(image: #imageLiteral(resourceName: "syncIcon"), color: white)
+        syncIcon = ButtonImage(image: #imageLiteral(resourceName: "syncIcon"), color: green)
     }
     
     func switchToStartButtons() {

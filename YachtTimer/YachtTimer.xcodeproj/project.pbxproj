@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		60027F881F17685D00D82418 /* LapTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60027F871F17685D00D82418 /* LapTime.swift */; };
-		600631881F62773700BB1087 /* HelpOverlayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600631871F62773700BB1087 /* HelpOverlayProtocol.swift */; };
 		6006318A1F660B9F00BB1087 /* PhoneScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600631891F660B9F00BB1087 /* PhoneScreen.swift */; };
 		600AE0531F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AE0521F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift */; };
 		600AE0551F4D012800595E66 /* TimerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600AE0541F4D012800595E66 /* TimerTime.swift */; };
@@ -38,22 +37,19 @@
 		603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */; };
 		6033802E1F54002300693B40 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6033802D1F54002200693B40 /* TimerManager.swift */; };
 		6033802F1F54002300693B40 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6033802D1F54002200693B40 /* TimerManager.swift */; };
-		603655F21F664C86002B03CB /* HelpImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603655F11F664C86002B03CB /* HelpImageSet.swift */; };
 		607498651F59496300414F81 /* LabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607498641F59496300414F81 /* LabelCollection.swift */; };
 		607498661F59498500414F81 /* LabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607498641F59496300414F81 /* LabelCollection.swift */; };
 		607498861F59684E00414F81 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607498851F59684E00414F81 /* HealthKit.framework */; };
 		607498891F59685D00414F81 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607498881F59685D00414F81 /* HealthKit.framework */; };
-		6074988B1F5CDA4200414F81 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074988A1F5CDA4100414F81 /* UIButtonExtension.swift */; };
 		6074988D1F5CE6BD00414F81 /* InterfaceColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074988C1F5CE6BD00414F81 /* InterfaceColor.swift */; };
 		6074988E1F5CE6BE00414F81 /* InterfaceColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6074988C1F5CE6BD00414F81 /* InterfaceColor.swift */; };
+		6097A9381F725C1E00B0908C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6097A9371F725C1E00B0908C /* Extensions.swift */; };
 		609E7A731F42F514004B0139 /* LapTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A721F42F514004B0139 /* LapTableRow.swift */; };
 		609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
 		609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */; };
 		609E7A791F430B2F004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
 		609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
 		609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
-		609E7A7E1F4A455F004B0139 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A7D1F4A455F004B0139 /* Accessories.swift */; };
-		609E7A7F1F4A456C004B0139 /* Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A7D1F4A455F004B0139 /* Accessories.swift */; };
 		609E7A831F4A4C83004B0139 /* PhoneLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A821F4A4C83004B0139 /* PhoneLabelCollection.swift */; };
 		609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */; };
 		60C85CD61F4C229B00DB7A33 /* WKInterfaceImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */; };
@@ -104,7 +100,7 @@
 
 /* Begin PBXFileReference section */
 		60027F871F17685D00D82418 /* LapTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LapTime.swift; path = YachtTimer/LapTime.swift; sourceTree = "<group>"; };
-		60027F891F184BA800D82418 /* testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing.playground; sourceTree = "<group>"; };
+		60027F891F184BA800D82418 /* testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		600631871F62773700BB1087 /* HelpOverlayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpOverlayProtocol.swift; sourceTree = "<group>"; };
 		600631891F660B9F00BB1087 /* PhoneScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneScreen.swift; sourceTree = "<group>"; };
 		600AE0521F4CFF8E00595E66 /* WatchTimerTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTimerTimeDisplay.swift; sourceTree = "<group>"; };
@@ -137,17 +133,18 @@
 		603217F91F2864DF00E4E846 /* StopWatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewCell.swift; sourceTree = "<group>"; };
 		6033802D1F54002200693B40 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		603655F11F664C86002B03CB /* HelpImageSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpImageSet.swift; sourceTree = "<group>"; };
+		603655F31F6756D8002B03CB /* BlurOverlayElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurOverlayElement.swift; sourceTree = "<group>"; };
 		607498641F59496300414F81 /* LabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCollection.swift; sourceTree = "<group>"; };
 		607498851F59684E00414F81 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		607498871F59685D00414F81 /* YachtTimer - Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YachtTimer - Watch Extension.entitlements"; sourceTree = "<group>"; };
 		607498881F59685D00414F81 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
-		6074988A1F5CDA4100414F81 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		6074988C1F5CE6BD00414F81 /* InterfaceColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceColor.swift; sourceTree = "<group>"; };
+		6097A9371F725C1E00B0908C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6097A9391F725D1B00B0908C /* OverlayElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayElement.swift; sourceTree = "<group>"; };
 		609E7A721F42F514004B0139 /* LapTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapTableRow.swift; sourceTree = "<group>"; };
 		609E7A741F42F60F004B0139 /* StopwatchTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StopwatchTime.swift; path = "YachtTimer - Watch Extension/StopwatchTime.swift"; sourceTree = "<group>"; };
 		609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchStopwatchTimeDisplay.swift; sourceTree = "<group>"; };
 		609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchLabelCollection.swift; sourceTree = "<group>"; };
-		609E7A7D1F4A455F004B0139 /* Accessories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accessories.swift; sourceTree = "<group>"; };
 		609E7A821F4A4C83004B0139 /* PhoneLabelCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLabelCollection.swift; sourceTree = "<group>"; };
 		609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopwatchTimeDisplay.swift; sourceTree = "<group>"; };
 		60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKInterfaceImageExtension.swift; sourceTree = "<group>"; };
@@ -201,6 +198,7 @@
 		6017354C1F17369300713DF1 = {
 			isa = PBXGroup;
 			children = (
+				60EB6E3A1F7E047200851E2A /* Unused */,
 				602501A91F32DF8D009F664A /* Shared */,
 				601735571F17369300713DF1 /* YachtTimer */,
 				602501871F32DF6D009F664A /* YachtTimer - Watch */,
@@ -236,9 +234,8 @@
 				6017355F1F17369300713DF1 /* YachtTimer.xcdatamodeld */,
 				609E7A821F4A4C83004B0139 /* PhoneLabelCollection.swift */,
 				609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */,
-				6074988A1F5CDA4100414F81 /* UIButtonExtension.swift */,
 				600631891F660B9F00BB1087 /* PhoneScreen.swift */,
-				603655F11F664C86002B03CB /* HelpImageSet.swift */,
+				6097A9371F725C1E00B0908C /* Extensions.swift */,
 			);
 			path = YachtTimer;
 			sourceTree = "<group>";
@@ -271,13 +268,11 @@
 				603217F71F282A6100E4E846 /* TextToSpeech.swift */,
 				60027F871F17685D00D82418 /* LapTime.swift */,
 				609E7A741F42F60F004B0139 /* StopwatchTime.swift */,
-				609E7A7D1F4A455F004B0139 /* Accessories.swift */,
 				600AE0541F4D012800595E66 /* TimerTime.swift */,
 				6033802D1F54002200693B40 /* TimerManager.swift */,
 				601D0EF11F540F4F00F418BF /* StopwatchManager.swift */,
 				607498641F59496300414F81 /* LabelCollection.swift */,
 				6074988C1F5CE6BD00414F81 /* InterfaceColor.swift */,
-				600631871F62773700BB1087 /* HelpOverlayProtocol.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -291,6 +286,17 @@
 				603217F51F282A3800E4E846 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60EB6E3A1F7E047200851E2A /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				603655F11F664C86002B03CB /* HelpImageSet.swift */,
+				600631871F62773700BB1087 /* HelpOverlayProtocol.swift */,
+				603655F31F6756D8002B03CB /* BlurOverlayElement.swift */,
+				6097A9391F725D1B00B0908C /* OverlayElement.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,12 +362,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Szamódy Zs. Balázs";
 				TargetAttributes = {
 					601735541F17369300713DF1 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VWUE9JZKY9;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -383,6 +390,7 @@
 					602501911F32DF6D009F664A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VWUE9JZKY9;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
@@ -453,22 +461,19 @@
 				6074988D1F5CE6BD00414F81 /* InterfaceColor.swift in Sources */,
 				6017356F1F17535300713DF1 /* StopwatchViewController.swift in Sources */,
 				603217F81F282A6100E4E846 /* TextToSpeech.swift in Sources */,
-				609E7A7F1F4A456C004B0139 /* Accessories.swift in Sources */,
 				607498651F59496300414F81 /* LabelCollection.swift in Sources */,
 				601D0EF21F540F4F00F418BF /* StopwatchManager.swift in Sources */,
 				609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */,
 				609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */,
 				6033802E1F54002300693B40 /* TimerManager.swift in Sources */,
 				601735611F17369300713DF1 /* YachtTimer.xcdatamodeld in Sources */,
-				6074988B1F5CDA4200414F81 /* UIButtonExtension.swift in Sources */,
 				60027F881F17685D00D82418 /* LapTime.swift in Sources */,
 				609E7A831F4A4C83004B0139 /* PhoneLabelCollection.swift in Sources */,
 				6017355B1F17369300713DF1 /* ViewController.swift in Sources */,
-				600631881F62773700BB1087 /* HelpOverlayProtocol.swift in Sources */,
-				603655F21F664C86002B03CB /* HelpImageSet.swift in Sources */,
 				603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */,
 				609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */,
 				6006318A1F660B9F00BB1087 /* PhoneScreen.swift in Sources */,
+				6097A9381F725C1E00B0908C /* Extensions.swift in Sources */,
 				60F161B61F5FAE13004DD5BB /* TimerTime.swift in Sources */,
 				601735591F17369300713DF1 /* AppDelegate.swift in Sources */,
 			);
@@ -481,7 +486,6 @@
 				602501AB1F32DFB7009F664A /* LapTime.swift in Sources */,
 				60C85CD61F4C229B00DB7A33 /* WKInterfaceImageExtension.swift in Sources */,
 				6025019A1F32DF6D009F664A /* ExtensionDelegate.swift in Sources */,
-				609E7A7E1F4A455F004B0139 /* Accessories.swift in Sources */,
 				600AE0551F4D012800595E66 /* TimerTime.swift in Sources */,
 				609E7A751F42F60F004B0139 /* StopwatchTime.swift in Sources */,
 				6033802F1F54002300693B40 /* TimerManager.swift in Sources */,
@@ -552,7 +556,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -560,7 +566,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -602,7 +612,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -610,7 +622,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -645,7 +661,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -659,7 +677,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -711,7 +731,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};
@@ -729,7 +750,8 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};

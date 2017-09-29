@@ -188,7 +188,7 @@ extension StopwatchInterfaceController {
         startIcon = ButtonImage(image: #imageLiteral(resourceName: "startIcon"), color: green)
         pauseIcon = ButtonImage(image: #imageLiteral(resourceName: "pauseIcon"), color: red)
         resetIcon = ButtonImage(image: #imageLiteral(resourceName: "closeIcon"), color: red)
-        lapIcon = ButtonImage(image: #imageLiteral(resourceName: "resetIcon"), color: white)
+        lapIcon = ButtonImage(image: #imageLiteral(resourceName: "resetIcon"), color: green)
     }
     
     func switchToStartButtons() {

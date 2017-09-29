@@ -2,6 +2,4 @@
 
 import UIKit
 
-let hours: Int = 0
-
-let number = hours % 10
+let result: Int = 50 % 60

@@ -31,6 +31,10 @@ struct PhoneScreen: CustomStringConvertible {
         return PhoneScreen(deviceSize: getDevice(), orientation: UIDevice.current.orientation.isLandscape)
     }
     
+    static var interfaceMultiplier: CGFloat {
+        return PhoneScreen.setInterfaceSize()
+    }
+    
     
     /*static func getCurrentScreen() {
         
@@ -65,4 +69,21 @@ struct PhoneScreen: CustomStringConvertible {
         }
     }
     
+    static func setInterfaceSize() -> CGFloat {
+        switch getDevice() {
+        case .iphoneSE, .iphone4:
+            return 1
+        case .iphone:
+            return 1.3
+        case .iphonePlus:
+            return 1.35
+        case .ipad:
+            return 2
+        case .ipadProSmall:
+            return 2.4
+        case .ipadProBig:
+            return 3
+            
+        }
+    }
 }

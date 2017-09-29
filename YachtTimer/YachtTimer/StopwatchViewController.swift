@@ -37,6 +37,8 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var smallFractionSecond2Label: UILabel!
     @IBOutlet weak var smallDisplayStackView: UIStackView!
     
+    @IBOutlet weak var interfaceStackView: UIStackView!
+    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lapButton: UIButton!
     
@@ -108,6 +110,9 @@ class StopwatchViewController: UIViewController {
     var lapTime: TimeInterval = 0 {
         didSet {
             updateNewDisplay(lapTime, for: labelCollections[0])
+            if !overlayView.isHidden {
+                
+            }
         }
     }
     
@@ -160,8 +165,9 @@ class StopwatchViewController: UIViewController {
         smallDisplayStackView.isHidden = true
         switchToStartButtons()
         setLabelColors()
-        prepareOverlaysAndButtons()
         
+        let multiplier = PhoneScreen.interfaceMultiplier
+        interfaceStackView.transform = CGAffineTransform(scaleX: multiplier, y: multiplier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,21 +204,17 @@ class StopwatchViewController: UIViewController {
             LapTime.addLap(totalTime)
             lapsTableView.reloadData()
         } else {
-            startDate = nil
-            lapDate = nil
-            LapTime.laps = []
-            isFirstLap = true
-            lapsTableView.reloadData()
+            resetStopwatch()
         }
         
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        showHelpOverlay()
+        
     }
     
     @IBAction func closeOverlayLeftButtonPressed(_ sender: Any) {
-        hideHelpOverlay()
+        
     }
 }
 
@@ -235,6 +237,14 @@ extension StopwatchViewController: StopwatchManager {
                 label.textColor = white
             }
         }
+    }
+    
+    func resetStopwatch() {
+        startDate = nil
+        lapDate = nil
+        LapTime.laps = []
+        isFirstLap = true
+        lapsTableView.reloadData()
     }
 }
 
@@ -267,18 +277,21 @@ extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension StopwatchViewController: HelpOverlayProtocol {
+extension StopwatchViewController {
     //MARK: Overlay handling
-    
+   /*
     func prepareOverlaysAndButtons() {
         buttonGroup = [startButton, lapButton, helpButton]
         helpButton.setUpButton(image: #imageLiteral(resourceName: "QuestionMark"), color: blue)
         overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
+        setOverlayBackground()
         overlayView.isHidden = true
         settingsButton.isHidden = true
     }
     
     func prepareOverlayImage(isOrientationLandscape: Bool) {
+        
+        
         let orientationSet: HelpImageSet?
         if isOrientationLandscape {
             orientationSet = HelpImageSet.landscapeSet
@@ -300,4 +313,5 @@ extension StopwatchViewController: HelpOverlayProtocol {
         }
         
     }
+ */
 }

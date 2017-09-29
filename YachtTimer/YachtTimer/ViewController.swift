@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     //@IBOutlet weak var secondLabelWidth: NSLayoutConstraint!
     
     @IBOutlet weak var timerStackView: UIStackView!
+    @IBOutlet weak var displayStackView: UIStackView!
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var syncButton: UIButton!
@@ -66,6 +67,11 @@ class ViewController: UIViewController {
                 manageSpeech(counter)
             }
             updateDisplay(counter)
+            
+            if !overlayView.isHidden {
+                
+            }
+ 
         }
     }
     
@@ -82,7 +88,9 @@ class ViewController: UIViewController {
         counter = counterReference
         setLabelColor(white)
         switchToStartButtons()
-        prepareOverlaysAndButtons()
+        guard let interfaceStackView = displayStackView.superview else { return }
+        let multiplier = PhoneScreen.interfaceMultiplier
+        interfaceStackView.transform = CGAffineTransform(scaleX: multiplier, y: multiplier)
     }
     
 
@@ -118,11 +126,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        showHelpOverlay()
+        
     }
     
     @IBAction func closeOverlayLeftButtonPressed(_ sender: Any) {
-        hideHelpOverlay()
+       
     }
     
     @IBAction func settingsButtonPressed(_ sender: Any) {
@@ -137,15 +145,12 @@ extension ViewController: TimerManager {
     
     
     func counterFinished(_ timer: Timer) {
-        let date: Date
-        if let endDate = endDate {
-            date = endDate
-        } else {
-            date = Date()
-        }
+        let date = Date()
+        
         stopTimer(timer)
         counter = counterReference
         if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
+            stopWatchVC.resetStopwatch()
             stopWatchVC.startDate = date
             stopWatchVC.lapDate = date
             self.tabBarController?.selectedViewController = stopWatchVC
@@ -192,18 +197,13 @@ extension ViewController {
         minuteLabel.isHidden = false
         separatorLabel.isHidden = false
         
-        //secondLabelWidth.constant = 97.5
-        
         timerStackView.transform = CGAffineTransform(scaleX: 1, y: 1)
-        
     }
     
     func enlargeSeconds() {
         
         minuteLabel.isHidden = true
         separatorLabel.isHidden = true
-        
-        //secondLabelWidth.constant = 97.5 * 4
         
         timerStackView.transform = CGAffineTransform(scaleX: 1.66, y: 1.66)
     }
@@ -261,23 +261,28 @@ extension ViewController {
     }
 }
 
-extension ViewController: HelpOverlayProtocol {
+extension ViewController {
     //MARK: Overlay handling
-    
+    /*
     func prepareOverlaysAndButtons() {
         buttonGroup = [startButton, syncButton, helpButton]
         helpButton.setUpButton(image: #imageLiteral(resourceName: "QuestionMark"), color: blue)
-        overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.35)
+        //overlayView.backgroundColor = UIColor(white: 0.25, alpha: 0.25)
+        setOverlayBackground()
         overlayView.isHidden = true
         settingsButton.isHidden = true
     }
     
     func prepareOverlayImage(isOrientationLandscape: Bool) {
+        overlayElements.append(OverlayElement.addElement(view: displayStackView, parentView: overlayView))
+        overlayElements.append(OverlayElement.addElement(view: startButton, parentView: overlayView))
+        
         if isOrientationLandscape {
             overlayImage.image = HelpImageSet.landscapeSet?.timerImage
         } else {
-            overlayImage.image = HelpImageSet.portraitSet?.timerImage
+            //overlayImage.image = HelpImageSet.portraitSet?.timerImage
         }
+     
         
     }
     
@@ -285,8 +290,9 @@ extension ViewController: HelpOverlayProtocol {
         super.viewWillTransition(to: size, with: coordinator)
         guard isViewLoaded else { return }
         if !overlayView.isHidden {
-            prepareOverlayImage(isOrientationLandscape: PhoneScreen.currentScreen.orientation)
+            //prepareOverlayImage(isOrientationLandscape: PhoneScreen.currentScreen.orientation)
         }
         
     }
+    */
 }

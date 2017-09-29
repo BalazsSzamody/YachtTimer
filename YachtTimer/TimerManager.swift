@@ -67,6 +67,7 @@ extension TimerManager {
                 return
             }
             startTimer()
+            
         } else {
             counter = counterReference
             if let completion = completion {
