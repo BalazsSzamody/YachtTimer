@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+extension Int {
+    func digits() -> (tens: Int, ones: Int) {
+        let tens = self / 10
+        let ones = self % 10
+        return (tens, ones)
+    }
+    
+    var formattedString: String {
+        return "\(self)"
+    }
+}

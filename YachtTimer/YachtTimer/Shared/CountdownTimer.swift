@@ -7,3 +7,30 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+class CountdownTimer {
+    
+    let countdown: Variable<Int> = Variable(0)
+    
+    let isRunning: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    let isFinished: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    public func startStop() {
+        
+    }
+    
+    public func resetSync() {
+        
+    }
+    
+    public func addMinute() {
+        
+    }
+    
+    public func subtractMinute() {
+        
+    }
+}

@@ -7,3 +7,22 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+
+class StopwatchTimer {
+    
+    let isRunning: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    let totalTime: Variable<TimeInterval> = Variable(0)
+    let lapTime: Variable<TimeInterval> = Variable(0)
+    
+    public func startStop() {
+        
+    }
+    
+    public func addLapReset() {
+        
+    }
+}
