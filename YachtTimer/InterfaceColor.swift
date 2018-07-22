@@ -27,5 +27,9 @@ class InterfaceColor {
     static let brightYellow = UIColor(red: 255/255, green: 251/255, blue: 80/255, alpha: 1)
     static let white = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
     static let transparent = UIColor(white: 1, alpha: 0)
+    
+    static let defaultColor = InterfaceColor.brightGreen
+    static let withinOneMinuteColor = InterfaceColor.brightRed
+    static let withinTwoMinutesColor = InterfaceColor.brightYellow
 }
 

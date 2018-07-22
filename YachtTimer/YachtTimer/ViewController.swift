@@ -149,7 +149,7 @@ extension ViewController: TimerManager {
         
         stopTimer(timer)
         counter = counterReference
-        if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? StopwatchViewController {
+        if let stopWatchVC = self.tabBarController?.viewControllers?[1] as? SWViewController {
             stopWatchVC.resetStopwatch()
             stopWatchVC.startDate = date
             stopWatchVC.lapDate = date

@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'YachtTimer' do
+platform :ios, '10.3'
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for YachtTimer
+    pod 'RxSwift'
+    pod 'RxCocoa'
+
+end
+
+target 'YachtTimer - Watch' do
+    platform :watchos, '3.2'
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for YachtTimer - Watch
+
+end
+
+target 'YachtTimer - Watch Extension' do
+    platform :watchos, '3.2'
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for YachtTimer - Watch Extension
+    pod 'RxSwift'
+    pod 'RxCocoa'
+
+end

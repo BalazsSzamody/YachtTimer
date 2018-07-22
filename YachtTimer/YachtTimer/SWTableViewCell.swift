@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopWatchTableViewCell: UITableViewCell {
+class SWTableViewCell: UITableViewCell {
     
     
     
@@ -71,7 +71,7 @@ class StopWatchTableViewCell: UITableViewCell {
 
 }
 
-extension StopWatchTableViewCell {
+extension SWTableViewCell {
     //MARK: Display functions
     
     func updateDisplay(_ timeInterval: TimeInterval, at display: [UILabel]?) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StopwatchViewController: UIViewController {
+class SWViewController: UIViewController {
 
     @IBOutlet weak var hour1Label: UILabel!
     @IBOutlet weak var hour2Label: UILabel!
@@ -218,7 +218,7 @@ class StopwatchViewController: UIViewController {
     }
 }
 
-extension StopwatchViewController: StopwatchManager {
+extension SWViewController: StopwatchManager {
     
     func switchToStartButtons() {
         //setUpButton in UIButtonExtension
@@ -248,11 +248,11 @@ extension StopwatchViewController: StopwatchManager {
     }
 }
 
-extension StopwatchViewController: StopwatchTimeDisplay {
+extension SWViewController: StopwatchTimeDisplay {
     
 }
 
-extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {
+extension SWViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -277,7 +277,7 @@ extension StopwatchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension StopwatchViewController {
+extension SWViewController {
     //MARK: Overlay handling
    /*
     func prepareOverlaysAndButtons() {

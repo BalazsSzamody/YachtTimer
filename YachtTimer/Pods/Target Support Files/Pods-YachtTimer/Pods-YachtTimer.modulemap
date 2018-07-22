@@ -1,0 +1,6 @@
+framework module Pods_YachtTimer {
+  umbrella header "Pods-YachtTimer-umbrella.h"
+
+  export *
+  module * { export * }
+}
