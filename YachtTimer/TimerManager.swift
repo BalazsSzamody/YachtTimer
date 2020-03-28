@@ -45,7 +45,7 @@ extension TimerManager {
         }
         
         guard let timer = timer else { return }
-        RunLoop.current.add(timer, forMode: .commonModes)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     func stopTimer(_ timer: Timer) {

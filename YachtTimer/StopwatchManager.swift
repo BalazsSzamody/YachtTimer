@@ -43,7 +43,7 @@ extension StopwatchManager {
         }
         
         guard let stopWatch = stopWatch else { return }
-        RunLoop.current.add(stopWatch, forMode: .commonModes)
+        RunLoop.current.add(stopWatch, forMode: .common)
     }
     
     func stopStopWatch(_ stopWatch: Timer, stoppedByUser: Bool) {

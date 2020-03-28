@@ -49,7 +49,6 @@
 		609E7A771F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A761F4303C6004B0139 /* WatchStopwatchTimeDisplay.swift */; };
 		609E7A791F430B2F004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
 		609E7A7A1F490F21004B0139 /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A741F42F60F004B0139 /* StopwatchTime.swift */; };
-		609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A781F430B2F004B0139 /* WatchLabelCollection.swift */; };
 		609E7A831F4A4C83004B0139 /* PhoneLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A821F4A4C83004B0139 /* PhoneLabelCollection.swift */; };
 		609E7A851F4A4F68004B0139 /* StopwatchTimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E7A841F4A4F68004B0139 /* StopwatchTimeDisplay.swift */; };
 		60C85CD61F4C229B00DB7A33 /* WKInterfaceImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C85CD51F4C229A00DB7A33 /* WKInterfaceImageExtension.swift */; };
@@ -362,13 +361,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Szamódy Zs. Balázs";
 				TargetAttributes = {
 					601735541F17369300713DF1 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VWUE9JZKY9;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -390,7 +389,7 @@
 					602501911F32DF6D009F664A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = VWUE9JZKY9;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
@@ -405,7 +404,7 @@
 			};
 			buildConfigurationList = 601735501F17369300713DF1 /* Build configuration list for PBXProject "YachtTimer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -471,7 +470,6 @@
 				609E7A831F4A4C83004B0139 /* PhoneLabelCollection.swift in Sources */,
 				6017355B1F17369300713DF1 /* ViewController.swift in Sources */,
 				603217FA1F2864DF00E4E846 /* StopWatchTableViewCell.swift in Sources */,
-				609E7A7C1F4A44DC004B0139 /* WatchLabelCollection.swift in Sources */,
 				6006318A1F660B9F00BB1087 /* PhoneScreen.swift in Sources */,
 				6097A9381F725C1E00B0908C /* Extensions.swift in Sources */,
 				60F161B61F5FAE13004DD5BB /* TimerTime.swift in Sources */,
@@ -560,6 +558,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -567,6 +566,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -616,6 +616,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -623,6 +624,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -662,7 +664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -678,7 +680,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fr3qfly.YachtTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -732,7 +734,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};
@@ -751,7 +753,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 3.2;
 			};

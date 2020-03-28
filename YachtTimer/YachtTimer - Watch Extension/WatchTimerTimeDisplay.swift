@@ -65,6 +65,6 @@ extension WatchTimerTimeDisplay {
     }
     
     func setText(_ inputString: String, for size: CGFloat) -> NSAttributedString {
-        return NSAttributedString(string: inputString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)])
+        return NSAttributedString(string: inputString, attributes: [.font: UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)])
     }
 }
