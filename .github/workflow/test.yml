@@ -1,0 +1,19 @@
+
+name: Test
+
+on:
+  push:
+    branches:
+    - action-test
+
+jobs:
+  test:
+    name: Test
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        destination: ['Phone SE', 'iPhone 11 Pro']
+        xcode: ['/Applications/Xcode_11.6.app/Contents/Developer']
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
